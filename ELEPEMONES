@@ -1,3 +1,5 @@
 [Bulbasaur]
 hp=100
+defense=99
+type=1
 attacks=plan1,plant2
