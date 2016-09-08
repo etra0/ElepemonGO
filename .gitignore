@@ -4,3 +4,4 @@
 inih
 *.a
 bin
+.vscode
