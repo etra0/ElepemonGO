@@ -3,3 +3,9 @@ hp=100
 defense=99
 type=1
 attacks=plan1,plant2
+
+[Charmander]
+hp=90
+defense=78
+type=3
+attacks=fire1,fire2
