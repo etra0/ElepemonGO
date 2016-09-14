@@ -23,6 +23,20 @@ make run
 debido a que el ejecutable se guarda en la carpeta bin
 
 
+# Milestones
+
+|Función|Completado|
+|----|----|
+|`print_elepemon`|falta attacks|
+|`init_elepemon`|listo|
+|`free_elepemon`|funciona?|
+|`get_attacks_ids`|0|
+|`load_attacks`|0|
+|`unload_attacks`|0|
+|`push_elepemon`|listo|
+|`get_elepemon`|funciona?|
+|`free_elepemon_stack`|funciona?|
+
 # Supuestos
 
 Se asume que no habrán pokemones con el mismo nombre.
