@@ -8,13 +8,16 @@ CC=gcc
 
 default: $(OUT)
 
-compile: elepemon.o stack.o main.c
-	$(CC) $(CFLAGS) -L./ main.c $< stack.o -linih -o bin/$(EXEC)
+compile: elepemon.o stack.o attacks.o main.c
+	$(CC) $(CFLAGS) -L./ main.c *.o -linih -o bin/$(EXEC)
 
 elepemon.o: elepemon.c
 	$(CC) $(CFLAGS) $< -c
 
 stack.o: stack.c
+	$(CC) $(CFLAGS) $< -c
+
+attacks.o: attacks.c
 	$(CC) $(CFLAGS) $< -c
 
 run:

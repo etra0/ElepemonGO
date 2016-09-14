@@ -6,10 +6,14 @@ void print_elepemon(const struct elepemon* elepemon)
         printf("There's no Elepemon!");
         return;
     }
+    int i = 0;
     printf("Name: \t %s\n", elepemon->name);
     printf("HP: \t %d\n", elepemon->hp);
     printf("Defense: %d\n", elepemon->defense);
     printf("Type: \t %d\n", elepemon->type);
+    for(i = 0; i < elepemon->attack.attack_count; i++)
+        printf("ATTACK %d: %s\n", i+1, elepemon->attack.attack_ids[i]);
+
 }
 
 void init_elepemon(struct elepemon* elepemon)
