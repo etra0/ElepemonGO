@@ -17,7 +17,7 @@ make compile
 ```
 
 para compilar y obtener el ejecutable. Para probar usar
-```
+```bash
 make run
 ```
 debido a que el ejecutable se guarda en la carpeta bin
@@ -34,9 +34,9 @@ debido a que el ejecutable se guarda en la carpeta bin
 |`load_attacks`|0|
 |`unload_attacks`|0|
 |`push_elepemon`|listo|
-|`get_elepemon`|funciona?|
+|`get_elepemon`|listo|
 |`free_elepemon_stack`|funciona?|
 
 # Supuestos
 
-Se asume que no habrán pokemones con el mismo nombre.
+* Se asume que no habrán elepemones con el mismo nombre.
