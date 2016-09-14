@@ -31,6 +31,15 @@ void free_elepemon_stack(struct elepemon_node* stack)
 
 }
 
+void recorrer(struct elepemon_node* stack)
+{
+    struct elepemon_node* ptr = stack;
+    while( !( is_empty(ptr) ) ){
+        print_elepemon( &(ptr->elepemon) );
+        ptr = ptr->next;
+    }
+}
+
 struct elepemon_node* push_elepemon(struct elepemon_node** stack, const char* name)
 {
     struct elepemon_node* aux;
