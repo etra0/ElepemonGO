@@ -11,7 +11,7 @@ Para que funcione, primero ejecutar
 ```bash
 make
 ```
-con esto se compila el inih para cargar el archivo, luego 
+con esto se compila el inih para cargar el archivo, luego
 ```bash
 make compile
 ```
@@ -21,3 +21,8 @@ para compilar y obtener el ejecutable. Para probar usar
 make run
 ```
 debido a que el ejecutable se guarda en la carpeta bin
+
+
+# Supuestos
+
+Se asume que no habrán pokemones con el mismo nombre.

@@ -11,7 +11,7 @@ struct elepemon* get_elepemon( struct elepemon_node* stack, const char* name)
 
     while( !(is_empty (ptr)) ){
         if ( ptr -> elepemon.name == name ){
-            return elepemon;
+            return &(ptr->elepemon);
         }
         ptr = ptr -> next;
     }
@@ -23,7 +23,7 @@ void free_elepemon_stack(struct elepemon_node* stack)
 {
     while( !(is_empty(stack)) ){
         struct elepemon_node* aux;
-        free_elepemon( stack->elepemon );
+        // free_elepemon( &(stack->elepemon) );
         aux = stack;
         stack = stack-> next;
         free(aux);
@@ -35,7 +35,7 @@ void recorrer(struct elepemon_node* stack)
 {
     struct elepemon_node* ptr = stack;
     while( !( is_empty(ptr) ) ){
-        print_elepemon( &(ptr->elepemon) );
+        print_elepemon( &(ptr->elepemon) ); printf("----------------\n");
         ptr = ptr->next;
     }
 }

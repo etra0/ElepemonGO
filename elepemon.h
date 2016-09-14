@@ -179,4 +179,8 @@ struct elepemon* get_elepemon(struct elepemon_node* stack, const char* name);
 */
 void free_elepemon_stack(struct elepemon_node* stack);
 
+
+// Agregado
+int is_empty(struct elepemon_node* stack);
+
 #endif // ELEPEMON_H
