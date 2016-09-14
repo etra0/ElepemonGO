@@ -25,14 +25,14 @@ debido a que el ejecutable se guarda en la carpeta bin
 
 # Milestones
 
-|Función|Completado|
+|Función|Estado|
 |----|----|
 |`print_elepemon`|listo|
 |`init_elepemon`|listo|
-|`free_elepemon`|free de los arreglos attack|
+|`free_elepemon`|funciona?|
 |`get_attacks_ids`|listo|
-|`load_attacks`|0|
-|`unload_attacks`|0|
+|`load_attacks`|Que retorna? - Casi listo|
+|`unload_attacks`|listo|
 |`push_elepemon`|listo|
 |`get_elepemon`|listo|
 |`free_elepemon_stack`|funciona?|

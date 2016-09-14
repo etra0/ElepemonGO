@@ -9,7 +9,7 @@ CC=gcc
 default: $(OUT)
 
 compile: elepemon.o stack.o attacks.o main.c
-	$(CC) $(CFLAGS) -L./ main.c objects/*.o -linih -o bin/$(EXEC)
+	$(CC) $(CFLAGS) -L./ main.c objects/*.o -linih -ldl -o bin/$(EXEC)
 
 elepemon.o: elepemon.c
 	$(CC) $(CFLAGS) $< -c -o objects/$@
