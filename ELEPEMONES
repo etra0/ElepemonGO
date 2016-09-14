@@ -8,4 +8,10 @@ attacks=plan1,plant2
 hp=90
 defense=78
 type=3
-attacks=fire1,fire2
+attacks=fuego1
+
+[Charizard]
+hp=99999
+defense=999
+type=3
+attacks=fire1,fire2,fire3,fire4,fire6

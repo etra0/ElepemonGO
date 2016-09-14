@@ -9,16 +9,19 @@ CC=gcc
 default: $(OUT)
 
 compile: elepemon.o stack.o attacks.o main.c
-	$(CC) $(CFLAGS) -L./ main.c *.o -linih -o bin/$(EXEC)
+	$(CC) $(CFLAGS) -L./ main.c objects/*.o -linih -o bin/$(EXEC)
 
 elepemon.o: elepemon.c
-	$(CC) $(CFLAGS) $< -c
+	$(CC) $(CFLAGS) $< -c -o objects/$@
 
 stack.o: stack.c
-	$(CC) $(CFLAGS) $< -c
+	$(CC) $(CFLAGS) $< -c -o objects/$@
 
-attacks.o: attacks.c
-	$(CC) $(CFLAGS) $< -c
+attacks.o: handler_stack.o attacks.c
+	$(CC) $(CFLAGS) attacks.c -c -o objects/$@
+
+handler_stack.o: handler_stack.c
+	$(CC) $(CFLAGS) $< -c -o objects/$@
 
 run:
 	bin/$(EXEC)
@@ -28,6 +31,8 @@ run:
 
 $(OUT): $(OBJ)
 	ar rcs $(OUT) $(OBJ) $(EXTRAARFLAGS)
+	mkdir objects
+	mkdir bin
 
 clean:
 	rm -f $(OBJ) $(OUT)

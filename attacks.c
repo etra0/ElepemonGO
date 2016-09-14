@@ -1,6 +1,10 @@
 #include "elepemon.h"
+#include "handler_stack.h"
 
-char** get_attack_ids(const char* str, int* n) {
+handler_stack *global_handlers = NULL;
+
+char** get_attack_ids(const char* str, int* n)
+{
 	int i = 0;
 	*n = 0;
 
@@ -27,4 +31,29 @@ char** get_attack_ids(const char* str, int* n) {
 	free(strcopy); free(token);
 
 	return array;
+}
+
+int load_attacks(const char* attacks_filedir, struct elepemon* elepemon)
+{
+	int i = 0;
+
+	void *handle;
+	char* filename = "";
+
+	elepemon->attack.attacks = malloc(sizeof(attack_t*) * elepemon->attack.attack_count);
+
+	for (i = 0; i < elepemon->attack.attack_count; i++) {
+		filename = strdup(attacks_filedir);
+		filename = strcat(filename, "/lib");
+		filename = strcat(filename, elepemon->attack.attack_ids[i]);
+		filename = strcat(filename, ".so");
+
+		handle = dlopen(filename, RTLD_NOW);
+
+		push_handler(&global_handlers, handle);
+
+		elepemon->attack.attacks[i] = dlsym(handle, ATTACK_FN);
+	}
+
+	return 1;
 }

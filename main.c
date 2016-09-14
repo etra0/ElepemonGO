@@ -20,21 +20,24 @@ static int handler(void* elepemon, const char* section, const char* name,
      * ya que si no, se creaba un elepemon por cada atributo
      */
 
-    if (is_empty(*temporal) || (strcmp(section, (*temporal)->elepemon.name))) {
+    if (is_empty(*temporal) || (strcmp(section, (*temporal)->elepemon.name)))
         actual = push_elepemon(temporal, section);
-        if (MATCH(section, "hp")) {
-            actual->elepemon.hp = atoi(value);
-        }
-    } else {
+    else
         actual = *temporal;
-        if (MATCH(section, "defense")) {
-            actual->elepemon.defense = atoi(value);
-        } else if (MATCH(section,"type")) {
-            actual->elepemon.type = atoi(value);
-        } else {
-            return 0;  /* unknown section/name, error */
-        }
-        
+
+    if (MATCH(section, "hp")) {
+        actual->elepemon.hp = atoi(value);
+    } else if (MATCH(section, "defense")) {
+        actual->elepemon.defense = atoi(value);
+    } else if (MATCH(section,"type")) {
+        actual->elepemon.type = atoi(value);
+    } else if (MATCH(section, "power")) {
+        /* Se envia a NULL porque suponemos que siempre habra un valor valido */
+        actual->elepemon.power = strtol(value, NULL, 10);
+    } else if (MATCH(section, "attacks")) {
+        actual->elepemon.attack.attack_ids = get_attack_ids(value, &(actual->elepemon.attack.attack_count));
+    } else {
+        return 0;  /* unknown section/name, error */
     }
     return 1;
 }
@@ -50,12 +53,22 @@ int main()
     // init_elepemon(&test[1]);
 
     struct elepemon_node *stack = NULL;
+    struct elepemon *temp;
+
     /* Verify if the file was loaded correctly and it parses inmediatly*/
     if (ini_parse("ELEPEMONES", handler, &stack) < 0) {
         printf("Can't load 'ELEPEMONES'\n");
         return 1;
     }
 
-    recorrer(stack);
+    temp = get_elepemon(stack, "Charmander");
+
+    print_elepemon(temp);
+
+    load_attacks("attacks", temp);
+
+    temp->attack.attacks[0](NULL, NULL);
+
+    return 0;
 
 }
