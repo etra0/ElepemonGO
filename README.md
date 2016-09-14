@@ -1,4 +1,4 @@
-# Tarea 1 LP
+# Tarea 1: "Elepemon GO"
 
 |Integrante|Rol|
 |----|----|
@@ -27,10 +27,10 @@ debido a que el ejecutable se guarda en la carpeta bin
 
 |Función|Completado|
 |----|----|
-|`print_elepemon`|falta attacks|
+|`print_elepemon`|listo|
 |`init_elepemon`|listo|
-|`free_elepemon`|funciona?|
-|`get_attacks_ids`|0|
+|`free_elepemon`|free de los arreglos attack|
+|`get_attacks_ids`|listo|
 |`load_attacks`|0|
 |`unload_attacks`|0|
 |`push_elepemon`|listo|

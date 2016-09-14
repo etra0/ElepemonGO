@@ -10,7 +10,7 @@ struct elepemon* get_elepemon( struct elepemon_node* stack, const char* name)
     struct elepemon_node* ptr = stack;
 
     while( !(is_empty (ptr)) ){
-        if ( ptr -> elepemon.name == name ){
+        if ( !strcmp(ptr -> elepemon.name,name) ){
             return &(ptr->elepemon);
         }
         ptr = ptr -> next;
