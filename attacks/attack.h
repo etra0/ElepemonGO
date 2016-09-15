@@ -1,7 +1,7 @@
 #ifndef ATTACK_H
 #define ATTACK_H
 
-#include <elepemon.h>
+#include <lib/elepemon.h>
 
 /*
 * Firma de funcion que cualquier ataque debiera implementar

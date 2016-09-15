@@ -29,13 +29,21 @@ debido a que el ejecutable se guarda en la carpeta bin
 |----|----|
 |`print_elepemon`|listo|
 |`init_elepemon`|listo|
-|`free_elepemon`|funciona?|
+|`free_elepemon`|listo|
 |`get_attacks_ids`|listo|
 |`load_attacks`|Que retorna? - Casi listo|
 |`unload_attacks`|listo|
 |`push_elepemon`|listo|
 |`get_elepemon`|listo|
-|`free_elepemon_stack`|funciona?|
+|`free_elepemon_stack`|listo|
+
+|To-Do|Estado|
+|----|----|
+|Deadpool|0|
+|Hacer funciones ataque|0|
+|Terminar el loop principal|0|
+|Armar struct attack|0|
+|Documentar|0|
 
 # Supuestos
 

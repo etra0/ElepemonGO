@@ -58,6 +58,15 @@ int load_attacks(const char* attacks_filedir, struct elepemon* elepemon)
 	return 1;
 }
 
+int verify_attack(struct elepemon *elepemon, char *str)
+{
+	int i;
+	for (i = 0; i < elepemon->attack.attack_count; i++)
+		if (!strcmp(elepemon->attack.attack_ids[i], str))
+			return i;
+	return -1;
+}
+
 void unload_attacks()
 {
 	while(global_handlers != NULL) {

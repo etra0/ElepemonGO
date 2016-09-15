@@ -1,4 +1,17 @@
 #include "../lib/elepemon.h"
+#include <ctype.h>
+
+
+char* translate_type(enum type value)
+{
+    char types[4][6] = {"NORMAL",
+	                "WATER",
+	                "FIRE",
+	                "PLANT"};
+    char *type = strdup(types[value]);
+
+    return type;
+}
 
 void print_elepemon(const struct elepemon* elepemon)
 {
@@ -10,7 +23,7 @@ void print_elepemon(const struct elepemon* elepemon)
     printf("Name: \t %s\n", elepemon->name);
     printf("HP: \t %d\n", elepemon->hp);
     printf("Defense: %d\n", elepemon->defense);
-    printf("Type: \t %d\n", elepemon->type);
+    printf("Type: \t %s\n", translate_type(elepemon->type));
     for(i = 0; i < elepemon->attack.attack_count; i++)
         printf("ATTACK %d: %s\n", i+1, elepemon->attack.attack_ids[i]);
 
@@ -38,7 +51,6 @@ void init_elepemon(struct elepemon* elepemon)
 void free_elepemon(struct elepemon* elepemon)
 {
     int i;
-    fprintf(stderr, "%s attackcount: %d\n", elepemon->name, elepemon->attack.attack_count);
     for(i = 0; i < elepemon->attack.attack_count; i++) {
         free(elepemon->attack.attack_ids[i]);
     }
@@ -47,4 +59,22 @@ void free_elepemon(struct elepemon* elepemon)
     free(elepemon->attack.attacks);
 
     free(elepemon->name);
+}
+
+void parse_type(const char *str, enum type *n)
+{
+    int i;
+    char *str_to_parse = strdup(str);
+    for(i = 0; i < strlen(str); i++)
+        str_to_parse[i] = tolower(str_to_parse[i]);
+
+    if (!strcmp(str_to_parse, "water")) {
+        *n = WATER;
+    } else if (!strcmp(str_to_parse, "fire")) {
+        *n = FIRE;
+    } else if (!strcmp(str_to_parse, "plant")) {
+        *n = PLANT;
+    } else {
+        *n = NORMAL;
+    }
 }

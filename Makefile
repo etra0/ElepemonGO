@@ -25,7 +25,7 @@ handler_stack.o: $(SRC)/handler_stack.c
 	$(CC) $(CFLAGS) $< -c -o objects/$@
 
 run:
-	bin/$(EXEC)
+	bin/$(EXEC) attacks ELEPEMONES
 
 .c.o:
 	$(CC) $(INCLUDES) $(CCFLAGS) $(EXTRACCFLAGS) -c $< -o $@

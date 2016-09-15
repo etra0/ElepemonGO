@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "../lib/elepemon.h"
 #include "../inih/ini.h"
-
 #define MATCH(s, n) strcmp(section, s) == 0 && strcmp(name, n) == 0
+#define input printf("\n> ")
 
 // temporal
 void recorrer(struct elepemon_node* stack);
@@ -30,7 +30,7 @@ static int handler(void* elepemon, const char* section, const char* name,
     } else if (MATCH(section, "defense")) {
         actual->elepemon.defense = atoi(value);
     } else if (MATCH(section,"type")) {
-        actual->elepemon.type = atoi(value);
+        parse_type(value, &(actual->elepemon.type));
     } else if (MATCH(section, "power")) {
         /* Se envia a NULL porque suponemos que siempre habra un valor valido */
         actual->elepemon.power = strtol(value, NULL, 10);
@@ -54,10 +54,15 @@ int main(int argc, char* argv[])
 
     struct elepemon_node *main_stack = NULL;
     // Stack de los jugadores, que se sacaran del main_stack.
-    struct elepemon_node *stack1 = NULL;
-    struct elepemon_node *stack2 = NULL;
+    struct elepemon_node *stack[2] = {NULL, NULL};
 
-    int fin = 0;
+    /* el indice 0 corresponde al atacante, el 1 al defensor */
+    struct elepemon *elepemon_selected[2] = {NULL, NULL};
+
+    char *player_names[2], buffer[50];
+
+    int end = 0, choices, elepemones_per_player, i, j;
+    int quantity;
 
     /* Verify if the file was loaded correctly and it parses inmediatly*/
     if (ini_parse(elepemones_filename, handler, &main_stack) < 0) {
@@ -65,15 +70,88 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    recorrer(main_stack);
+    quantity = stack_size(main_stack);
 
-    move_stack_node(&main_stack, &stack1, 3);    
-    printf("STACK PRINCIPAL:\n");
-    recorrer(main_stack);
+    printf("Ingrese el nombre del primer entrenador: ");
+    input; scanf("%s", buffer);
+    player_names[0] = strdup(buffer);
 
-    printf("STACK1:\n");
-    recorrer(stack1);
+    printf("Ingrese el nombre del segundo entrenador: ");
+    input; scanf("%s", buffer);
+    player_names[1] = strdup(buffer);
 
+    do {
+    printf("Ingrese la cantidad de elepemones:\n");
+    input; scanf("%d", &elepemones_per_player);
+    if (elepemones_per_player > quantity/2)
+        printf("Solo tenemos %d elepemones, intente nuevamente, ", quantity);
+    } while(elepemones_per_player > quantity/2);
+
+
+    for(i = 0; i < 2; i++) {
+        printf("%s, elije tus elepemones:\n", player_names[i]);
+        for(j = 0; j < elepemones_per_player; j++) {
+            do {
+            recorrer(main_stack);
+
+            input; scanf("%d", &choices);
+
+            if (choices <= 0 || (choices > quantity))
+                printf("Ingrese un numero valido!\n");
+            } while ((choices <= 0) || (choices > quantity));
+
+            move_stack_node(&main_stack, &stack[i], choices);
+        }
+    }
+
+    printf("Elepemones 1:\n");
+    recorrer(stack[0]);
+    printf("\n---------\n");
+    printf("Elepemones 2:\n");
+    recorrer(stack[1]);
+    printf("\n---------\n");
+
+    printf("IT'S TIME TO DU-DU-DU-DU-DUEL!!!11!!uno!\n");
+
+    i = 0;
+    while (!end) {
+        do {
+            printf("%s, que elepemon ataca?", player_names[i]);
+            input; scanf("%s", buffer);
+            elepemon_selected[0] = get_elepemon(stack[i], buffer);
+            if (elepemon_selected[0] == NULL)
+                printf("No tienes ese elepemon!, ");
+        } while (elepemon_selected[0] == NULL);
+
+        do {
+            printf("Que ataque usara?");        
+            input; scanf("%s", buffer);
+            /* reutilizacion de choices, en este caso, actua como booleano */
+            choices = verify_attack(elepemon_selected[0], buffer);
+            if (choices == -1) {
+                printf("%s no tiene %s!, ", elepemon_selected[0]->name, buffer);
+            }
+        } while(choices == -1);
+
+        load_attacks(attack_folder, elepemon_selected[0]);
+
+        do {
+            printf("%s, a que elepemon ataca?", elepemon_selected[0]->name);
+            input; scanf("%s", buffer);
+            /* Debido a que son solo 2 jugadores, el contrapuesto es el negado del actual */
+            elepemon_selected[1] = get_elepemon(stack[!i], buffer);
+            if (elepemon_selected[1] == NULL)
+                printf("El enemigo no tiene ese elepemon!, ");
+        } while (elepemon_selected[1] == NULL);
+
+        elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]);
+        end = 1;
+    }
+
+    unload_attacks();
+    free_elepemon_stack(main_stack); free_elepemon_stack(stack[0]); free_elepemon_stack(stack[1]);
+    main_stack = NULL; stack[0] = NULL; stack[1] = NULL;
+    // free(stack);
     // load_attacks("attacks", get_elepemon(stack, "Charmander"));
     // load_attacks("attacks", get_elepemon(stack, "Charizard"));
     // load_attacks("attacks", get_elepemon(stack, "asfsf"));

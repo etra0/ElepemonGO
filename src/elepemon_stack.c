@@ -81,3 +81,14 @@ void move_stack_node(struct elepemon_node** from, struct elepemon_node** to, int
 
     return;
 }
+
+int stack_size(struct elepemon_node *stack)
+{
+    int i = 0;
+    while(!is_empty(stack)) {
+        stack = stack->next;
+        i++;
+    }
+
+    return i;
+}

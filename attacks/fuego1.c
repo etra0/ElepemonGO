@@ -2,5 +2,5 @@
 
 struct atack_result* attack(struct elepemon* atacante, struct elepemon* defensor)
 {
-	printf("EXITOOOO\n");
+	printf("%s ataco a %s\n", atacante->name, defensor->name);
 }
