@@ -16,19 +16,19 @@ defense=999
 type=plANT
 attacks=fuego1
 
-[karina]
+[auto]
 hp=99999
 defense=999
 type=water
 attacks=fuego1
 
-[maca]
+[marco]
 hp=99999
 defense=999
 type=water
 attacks=fuego1
 
-[putolfo]
+[elfo]
 hp=99999
 defense=999
 type=water
