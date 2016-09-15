@@ -10,7 +10,7 @@ SRC=src
 default: $(OUT)
 
 compile: elepemon.o stack.o attacks.o $(SRC)/main.c
-	$(CC) $(CFLAGS) -L./ $(SRC)/main.c objects/*.o -linih -o bin/$(EXEC)
+	$(CC) $(CFLAGS) -L./ $(SRC)/main.c objects/*.o -linih -ldl -o bin/$(EXEC)
 
 elepemon.o: $(SRC)/elepemon.c
 	$(CC) $(CFLAGS) $< -c -o objects/$@
