@@ -33,13 +33,14 @@ void free_elepemon_stack(struct elepemon_node* stack)
 
 void recorrer(struct elepemon_node* stack)
 {
+    int i = 1;
     struct elepemon_node* ptr = stack;
     if (ptr == NULL) {
         printf("vacio\n");
         return;
     }
     while( !( is_empty(ptr) ) ){
-        print_elepemon( &(ptr->elepemon) ); printf("----------------\n");
+        printf("%d. %s\n", i++, ptr->elepemon.name);
         ptr = ptr->next;
     }
 }
@@ -57,3 +58,26 @@ struct elepemon_node* push_elepemon(struct elepemon_node** stack, const char* na
     return *stack;
 }
 
+void move_stack_node(struct elepemon_node** from, struct elepemon_node** to, int indice)
+{
+    struct elepemon_node *aux = *from;
+    struct elepemon_node *to_move;
+    if (indice == 1) {
+        (*from) = (*from)->next;
+        aux->next = *to;
+        *to = aux;
+        return;
+    }
+
+    indice -= 2;
+    while (indice--) {
+        aux = aux->next;
+    }
+    to_move = aux->next;
+    aux->next = aux->next->next;
+
+    to_move->next = *to;
+    *to = to_move;
+
+    return;
+}

@@ -182,5 +182,6 @@ void free_elepemon_stack(struct elepemon_node* stack);
 
 // Agregado
 int is_empty(struct elepemon_node* stack);
+void move_stack_node(struct elepemon_node** from, struct elepemon_node** to, int indice);
 
 #endif // ELEPEMON_H

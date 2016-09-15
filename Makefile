@@ -15,7 +15,7 @@ compile: elepemon.o stack.o attacks.o $(SRC)/main.c
 elepemon.o: $(SRC)/elepemon.c
 	$(CC) $(CFLAGS) $< -c -o objects/$@
 
-stack.o: $(SRC)/stack.c
+stack.o: $(SRC)/elepemon_stack.c
 	$(CC) $(CFLAGS) $< -c -o objects/$@
 
 attacks.o: objects/handler_stack.o $(SRC)/attacks.c

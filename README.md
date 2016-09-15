@@ -40,3 +40,4 @@ debido a que el ejecutable se guarda en la carpeta bin
 # Supuestos
 
 * Se asume que no habrán elepemones con el mismo nombre.
+* Se exige que el primer parametro sea el directorio donde estarán los ataques y el segundo el nombre del ini.

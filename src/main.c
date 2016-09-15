@@ -42,25 +42,37 @@ static int handler(void* elepemon, const char* section, const char* name,
     return 1;
 }
 
-int main()
+int main(int argc, char* argv[])
 {
-    // struct elepemon test[2];
+    if (argc != 3) {
+        printf("No se han ingresado los suficientes parametros");
+        return -1;
+    }
 
-    // struct elepemon* address;
-    // address = test;
-
-    // init_elepemon(&test[0]);
-    // init_elepemon(&test[1]);
+    char *elepemones_filename = strdup(argv[2]);
+    char *attack_folder = strdup(argv[1]);
 
     struct elepemon_node *main_stack = NULL;
-    
-    struct elepemon *temp;
+    // Stack de los jugadores, que se sacaran del main_stack.
+    struct elepemon_node *stack1 = NULL;
+    struct elepemon_node *stack2 = NULL;
+
+    int fin = 0;
 
     /* Verify if the file was loaded correctly and it parses inmediatly*/
-    if (ini_parse("ELEPEMONES", handler, &stack) < 0) {
+    if (ini_parse(elepemones_filename, handler, &main_stack) < 0) {
         printf("Can't load 'ELEPEMONES'\n");
         return 1;
     }
+
+    recorrer(main_stack);
+
+    move_stack_node(&main_stack, &stack1, 3);    
+    printf("STACK PRINCIPAL:\n");
+    recorrer(main_stack);
+
+    printf("STACK1:\n");
+    recorrer(stack1);
 
     // load_attacks("attacks", get_elepemon(stack, "Charmander"));
     // load_attacks("attacks", get_elepemon(stack, "Charizard"));
