@@ -1,4 +1,4 @@
-#include "elepemon.h"
+#include "../lib/elepemon.h"
 
 int is_empty(struct elepemon_node* stack)
 {
@@ -21,9 +21,9 @@ struct elepemon* get_elepemon( struct elepemon_node* stack, const char* name)
 
 void free_elepemon_stack(struct elepemon_node* stack)
 {
+    struct elepemon_node* aux;
     while( !(is_empty(stack)) ){
-        struct elepemon_node* aux;
-        // free_elepemon( &(stack->elepemon) );
+        free_elepemon(&(stack->elepemon));
         aux = stack;
         stack = stack-> next;
         free(aux);
@@ -34,6 +34,10 @@ void free_elepemon_stack(struct elepemon_node* stack)
 void recorrer(struct elepemon_node* stack)
 {
     struct elepemon_node* ptr = stack;
+    if (ptr == NULL) {
+        printf("vacio\n");
+        return;
+    }
     while( !( is_empty(ptr) ) ){
         print_elepemon( &(ptr->elepemon) ); printf("----------------\n");
         ptr = ptr->next;

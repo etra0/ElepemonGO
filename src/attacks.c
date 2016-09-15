@@ -1,5 +1,5 @@
-#include "elepemon.h"
-#include "handler_stack.h"
+#include "../lib/elepemon.h"
+#include "../lib/handler_stack.h"
 
 handler_stack *global_handlers = NULL;
 
@@ -56,4 +56,11 @@ int load_attacks(const char* attacks_filedir, struct elepemon* elepemon)
 	}
 
 	return 1;
+}
+
+void unload_attacks()
+{
+	while(global_handlers != NULL) {
+		dlclose(pop_handler(&global_handlers));		
+	}
 }

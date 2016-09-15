@@ -1,9 +1,3 @@
-[Bulbasaur]
-hp=100
-defense=99
-type=1
-attacks=plan1,plant2
-
 [Charmander]
 hp=90
 defense=78
@@ -14,4 +8,10 @@ attacks=fuego1
 hp=99999
 defense=999
 type=3
-attacks=fire1,fire2,fire3,fire4,fire6
+attacks=fuego1
+
+[asfsf]
+hp=199
+defense=999
+type=3
+attacks=fuego1

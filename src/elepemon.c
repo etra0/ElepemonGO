@@ -1,4 +1,4 @@
-#include "elepemon.h"
+#include "../lib/elepemon.h"
 
 void print_elepemon(const struct elepemon* elepemon)
 {
@@ -33,4 +33,18 @@ void init_elepemon(struct elepemon* elepemon)
     elepemon->attack.attack_ids = NULL;
     elepemon->attack.attacks = NULL;
     elepemon->attack.attack_count = 0;
+}
+
+void free_elepemon(struct elepemon* elepemon)
+{
+    int i;
+    fprintf(stderr, "%s attackcount: %d\n", elepemon->name, elepemon->attack.attack_count);
+    for(i = 0; i < elepemon->attack.attack_count; i++) {
+        free(elepemon->attack.attack_ids[i]);
+    }
+    
+    free(elepemon->attack.attack_ids);
+    free(elepemon->attack.attacks);
+
+    free(elepemon->name);
 }

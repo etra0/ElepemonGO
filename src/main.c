@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "elepemon.h"
-#include "inih/ini.h"
+#include "../lib/elepemon.h"
+#include "../inih/ini.h"
 
 #define MATCH(s, n) strcmp(section, s) == 0 && strcmp(name, n) == 0
 
@@ -52,7 +52,8 @@ int main()
     // init_elepemon(&test[0]);
     // init_elepemon(&test[1]);
 
-    struct elepemon_node *stack = NULL;
+    struct elepemon_node *main_stack = NULL;
+    
     struct elepemon *temp;
 
     /* Verify if the file was loaded correctly and it parses inmediatly*/
@@ -61,13 +62,21 @@ int main()
         return 1;
     }
 
-    temp = get_elepemon(stack, "Charmander");
+    // load_attacks("attacks", get_elepemon(stack, "Charmander"));
+    // load_attacks("attacks", get_elepemon(stack, "Charizard"));
+    // load_attacks("attacks", get_elepemon(stack, "asfsf"));
+    
 
-    print_elepemon(temp);
+    // unload_attacks();
 
-    load_attacks("attacks", temp);
+    // recorrer(stack); 
 
-    temp->attack.attacks[0](NULL, NULL);
+    // print_elepemon(&(stack->elepemon));
+    // printf("FREE\n");
+    // free_elepemon_stack(stack);
+    // stack = NULL;
+    // print_elepemon(&(stack->elepemon));
+    // // recorrer(stack);    
 
     return 0;
 
