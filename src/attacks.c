@@ -78,6 +78,6 @@ void check_attack(struct attack_result* attack_info)
 {
     printf("%s ha usado %s contra %s\n",attack_info->attacker->name,attack_info->attack_id, attack_info->defensor->name);
     printf("Ha causado un daño de %d puntos de vida\n", attack_info->damage_done);
-    
+    free(attack_info);    
     return;
 }
