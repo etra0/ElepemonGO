@@ -144,7 +144,7 @@ int main(int argc, char* argv[])
                 printf("El enemigo no tiene ese elepemon!, ");
         } while (elepemon_selected[1] == NULL);
 
-        elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]);
+        check_attack( elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]) );
         end = 1;
     }
 

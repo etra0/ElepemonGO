@@ -9,6 +9,6 @@
 * @param 2 defensor
 * @return el resultado del ataque, alojado en el heap. debe ser liberado
 */
-struct atack_result* attack(struct elepemon*, struct elepemon*);
+struct attack_result* attack(struct elepemon*, struct elepemon*);
 
 #endif // ATTACK_H
