@@ -10,7 +10,7 @@ void recorrer(struct elepemon_node* stack);
 static int handler(void* elepemon, const char* section, const char* name,
                    const char* value)
 {
-    
+
     struct elepemon_node **temporal;
     temporal = (struct elepemon_node **) elepemon;
 
@@ -85,12 +85,12 @@ int main(int argc, char* argv[])
     input; scanf("%d", &elepemones_per_player);
     if (elepemones_per_player > quantity/2)
         printf("Solo tenemos %d elepemones, intente nuevamente, ", quantity);
-    } while(elepemones_per_player > quantity/2);
+    } while (elepemones_per_player > quantity/2);
 
 
-    for(i = 0; i < 2; i++) {
+    for (i = 0; i < 2; i++) {
         printf("%s, elije tus elepemones:\n", player_names[i]);
-        for(j = 0; j < elepemones_per_player; j++) {
+        for (j = 0; j < elepemones_per_player; j++) {
             do {
             recorrer(main_stack);
 
@@ -124,14 +124,14 @@ int main(int argc, char* argv[])
         } while (elepemon_selected[0] == NULL);
 
         do {
-            printf("Que ataque usara?");        
+            printf("Que ataque usara?");
             input; scanf("%s", buffer);
             /* reutilizacion de choices, en este caso, actua como booleano */
             choices = verify_attack(elepemon_selected[0], buffer);
             if (choices == -1) {
                 printf("%s no tiene %s!, ", elepemon_selected[0]->name, buffer);
             }
-        } while(choices == -1);
+        } while (choices == -1);
 
         load_attacks(attack_folder, elepemon_selected[0]);
 
@@ -144,7 +144,7 @@ int main(int argc, char* argv[])
                 printf("El enemigo no tiene ese elepemon!, ");
         } while (elepemon_selected[1] == NULL);
 
-        check_attack( elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]) );
+        check_attack(elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]));
         end = 1;
     }
 
@@ -155,18 +155,18 @@ int main(int argc, char* argv[])
     // load_attacks("attacks", get_elepemon(stack, "Charmander"));
     // load_attacks("attacks", get_elepemon(stack, "Charizard"));
     // load_attacks("attacks", get_elepemon(stack, "asfsf"));
-    
+
 
     // unload_attacks();
 
-    // recorrer(stack); 
+    // recorrer(stack);
 
     // print_elepemon(&(stack->elepemon));
     // printf("FREE\n");
     // free_elepemon_stack(stack);
     // stack = NULL;
     // print_elepemon(&(stack->elepemon));
-    // // recorrer(stack);    
+    // // recorrer(stack);
 
     return 0;
 

@@ -24,7 +24,7 @@ void print_elepemon(const struct elepemon* elepemon)
     printf("HP: \t %d\n", elepemon->hp);
     printf("Defense: %d\n", elepemon->defense);
     printf("Type: \t %s\n", translate_type(elepemon->type));
-    for(i = 0; i < elepemon->attack.attack_count; i++)
+    for (i = 0; i < elepemon->attack.attack_count; i++)
         printf("ATTACK %d: %s\n", i+1, elepemon->attack.attack_ids[i]);
 
 }
@@ -51,7 +51,7 @@ void init_elepemon(struct elepemon* elepemon)
 void free_elepemon(struct elepemon* elepemon)
 {
     int i;
-    for(i = 0; i < elepemon->attack.attack_count; i++) {
+    for (i = 0; i < elepemon->attack.attack_count; i++) {
         free(elepemon->attack.attack_ids[i]);
     }
     
@@ -65,7 +65,7 @@ void parse_type(const char *str, enum type *n)
 {
     int i;
     char *str_to_parse = strdup(str);
-    for(i = 0; i < strlen(str); i++)
+    for (i = 0; i < strlen(str); i++)
         str_to_parse[i] = tolower(str_to_parse[i]);
 
     if (!strcmp(str_to_parse, "water")) {

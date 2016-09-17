@@ -5,15 +5,15 @@ int is_empty(struct elepemon_node* stack)
     return stack == NULL;
 }
 
-struct elepemon* get_elepemon( struct elepemon_node* stack, const char* name)
+struct elepemon* get_elepemon(struct elepemon_node* stack, const char* name)
 {
     struct elepemon_node* ptr = stack;
 
-    while( !(is_empty (ptr)) ){
-        if ( !strcmp(ptr -> elepemon.name,name) ){
+    while (!(is_empty (ptr))) {
+        if (!strcmp(ptr->elepemon.name, name)) {
             return &(ptr->elepemon);
         }
-        ptr = ptr -> next;
+        ptr = ptr->next;
     }
 
     return NULL;
@@ -22,7 +22,7 @@ struct elepemon* get_elepemon( struct elepemon_node* stack, const char* name)
 void free_elepemon_stack(struct elepemon_node* stack)
 {
     struct elepemon_node* aux;
-    while( !(is_empty(stack)) ){
+    while (!(is_empty(stack))) {
         free_elepemon(&(stack->elepemon));
         aux = stack;
         stack = stack-> next;
@@ -39,7 +39,7 @@ void recorrer(struct elepemon_node* stack)
         printf("vacio\n");
         return;
     }
-    while( !( is_empty(ptr) ) ){
+    while (!(is_empty(ptr))) {
         printf("%d. %s\n", i++, ptr->elepemon.name);
         ptr = ptr->next;
     }
@@ -85,7 +85,7 @@ void move_stack_node(struct elepemon_node** from, struct elepemon_node** to, int
 int stack_size(struct elepemon_node *stack)
 {
     int i = 0;
-    while(!is_empty(stack)) {
+    while (!is_empty(stack)) {
         stack = stack->next;
         i++;
     }
