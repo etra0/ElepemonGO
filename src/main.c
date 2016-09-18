@@ -1,8 +1,21 @@
 #include <stdio.h>
 #include "../lib/elepemon.h"
 #include "../inih/ini.h"
+/* verificar archivo */
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 #define MATCH(s, n) strcmp(section, s) == 0 && strcmp(name, n) == 0
 #define input printf("\n> ")
+
+
+int is_regular_file(const char *path)
+{
+    struct stat path_stat;
+    stat(path, &path_stat);
+    return S_ISREG(path_stat.st_mode);
+}
 
 static int handler(void* elepemon, const char* section, const char* name,
                    const char* value)
@@ -66,9 +79,13 @@ int main(int argc, char* argv[])
     int end = 0, choices, elepemones_per_player, i, j;
     int quantity;
 
+    if (!is_regular_file(elepemones_filename)) {
+        printf("Parametros incorrectos.\n");
+        return 1;
+    }
     /* Verify if the file was loaded correctly and it parses inmediatly*/
     if (ini_parse(elepemones_filename, handler, &main_stack) < 0) {
-        printf("Can't load 'ELEPEMONES'\n");
+        printf("No se pudieron cargar los '%s'\n", elepemones_filename);
         return 1;
     }
 
