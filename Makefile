@@ -9,20 +9,11 @@ SRCCODE=src
 
 default: $(OUT)
 
-compile: elepemon_stack.o elepemon.o handler_stack.o attacks.o $(SRCCODE)/main.c
+compile: external $(SRCCODE)/main.c
 	$(CC) $(CFLAGS) -L./ $(SRCCODE)/main.c objects/*.o -linih -ldl -o bin/$(EXEC)
 
-elepemon.o: $(SRCCODE)/elepemon.c
-	$(CC) $(CFLAGS) $< -c -o objects/$@
-
-elepemon_stack.o: $(SRCCODE)/elepemon_stack.c
-	$(CC) $(CFLAGS) $< -c -o objects/$@
-
-attacks.o: objects/handler_stack.o $(SRCCODE)/attacks.c
-	$(CC) $(CFLAGS) $(SRCCODE)/attacks.c -c -o objects/$@
-
-handler_stack.o: $(SRCCODE)/handler_stack.c
-	$(CC) $(CFLAGS) $< -c -o objects/$@
+external:
+	for a in `ls $(SRCCODE)/*.c|grep -v main| sed 's/src\///g'`; do $(CC) $(CFLAGS) -c $(SRCCODE)/$$a  -o objects/$${a%*.c}.o; done
 
 run:
 	bin/$(EXEC) attacks ELEPEMONES
