@@ -12,7 +12,6 @@ struct attack_result* attack(struct elepemon* attacker, struct elepemon* defenso
     power = attacker->power;
     defense = defensor->defense;
 
-<<<<<<< HEAD
     if (power > defense){
         standard_damage = (power/2)-(defense/3);
     } else {
