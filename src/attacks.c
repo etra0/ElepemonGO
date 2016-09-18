@@ -74,15 +74,28 @@ void unload_attacks()
 	}
 }
 
-int check_attack(struct attack_result* attack_info)
+void check_attack(struct attack_result* attack_info)
 {
 	int is_dead = 0;
     printf("%s ha usado %s contra %s\n",attack_info->attacker->name, attack_info->attack_id, attack_info->defensor->name);
     printf("Ha causado un daño de %d puntos de vida\n", attack_info->damage_done);
     
-	if (attack_info->defensor->hp <= 0)
-		is_dead = 1;
-		
-	free(attack_info);
-	return is_dead;
+    if (attack_info->effective == NO){ 
+        printf("No ha sido efectivo\n");
+    }else if(attack_info->effective == NOTVERY){
+        printf("No ha sido muy efectivo\n");
+    }else if(attack_info->effective == SUPER){
+        printf("Ha sido super efectivo\n");
+    }
+    
+    if (attack_info->effect == CONFUSED){
+        printf("%s ha quedado confuso\n", attack_info->defensor->name);
+    }else if(attack_info->effect == POISONED){
+        printf("%s ha quedado envenenado\n", attack_info->defensor->name);
+    }else if(attack_info->effect == PARALYZED){
+        printf("%s ha quedado paralizado\n", attack_info->defensor->name);
+    }
+    
+    free(attack_info);
+    return;
 }

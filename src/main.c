@@ -77,7 +77,8 @@ int main(int argc, char* argv[])
     }
 
     quantity = stack_size(main_stack);
-
+    
+    printf("Bienvenidos a un nuevo elepeduelo\n");
     printf("Ingrese el nombre del primer entrenador: ");
     input; scanf("%s", buffer);
     player_names[0] = strdup(buffer);
@@ -113,10 +114,10 @@ int main(int argc, char* argv[])
         }
     }
 
-    printf("Elepemones de :%s\n", player_names[0]);
+    printf("Elepemones %s:\n",player_names[0]);
     recorrer(stack[0]);
     printf("\n---------\n");
-    printf("Elepemones de %s:\n", player_names[1]);
+    printf("Elepemones %s:\n", player_names[1]);
     recorrer(stack[1]);
     printf("\n---------\n");
 
@@ -153,7 +154,7 @@ int main(int argc, char* argv[])
                 printf("El enemigo no tiene ese elepemon!, ");
         } while (elepemon_selected[1] == NULL);
 
-        elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]);
+        check_attack(elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]));
         // is_dead  = check_attack(elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]));
         // if (is_dead) {
         //     move_stack_node()

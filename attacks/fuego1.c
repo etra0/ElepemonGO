@@ -11,10 +11,14 @@ struct attack_result* attack(struct elepemon* attacker, struct elepemon* defenso
     attack_info->effect = NOEFFECT;
     power = attacker->power;
     defense = defensor->defense;
-    standard_damage = (power/2)-(defense/3);
 
-    if (defensor->type == PLANT) {
-        attack_info->effective = SUPER;
+    if (power>defense){
+        standard_damage = (power/2)-(defense/3);
+    }else{
+        standard_damage = (power/2);
+    }
+    if (defensor->type == 3) {
+        attack_info->effective = 3;
         attack_info->damage_done = 70+standard_damage;
     } else if (defensor->type == WATER) {
         attack_info->effective = NO;
