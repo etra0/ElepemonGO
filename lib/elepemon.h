@@ -186,5 +186,6 @@ void move_stack_node(struct elepemon_node** from, struct elepemon_node** to, int
 void parse_type(const char *str, enum type *n);
 int stack_size(struct elepemon_node *stack);
 int verify_attack(struct elepemon *elepemon, char *str);
-void check_attack(struct attack_result* attack_info);
+int check_attack(struct attack_result* attack_info);
+int find_indice(struct elepemon_node *stack, struct elepemon *elepemon, int stack_size);
 #endif // ELEPEMON_H

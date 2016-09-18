@@ -17,7 +17,7 @@ char** get_attack_ids(const char* str, int* n)
 	for (i = 0; i < strlen(str); i++)
 		if (str[i] == ',')
 			(*n)++;
-	/* al ser en el formato at1,at2 falta contar una coma, por ende: */
+	/* al ser en el formato at1,at2 falta contar un ataque, por ende: */
 	(*n)++;
 
 	array = malloc(sizeof(char *) * (*n));
@@ -74,10 +74,15 @@ void unload_attacks()
 	}
 }
 
-void check_attack(struct attack_result* attack_info)
+int check_attack(struct attack_result* attack_info)
 {
+	int is_dead = 0;
     printf("%s ha usado %s contra %s\n",attack_info->attacker->name, attack_info->attack_id, attack_info->defensor->name);
     printf("Ha causado un daño de %d puntos de vida\n", attack_info->damage_done);
-    free(attack_info);
-    return;
+    
+	if (attack_info->defensor->hp <= 0)
+		is_dead = 1;
+		
+	free(attack_info);
+	return is_dead;
 }
