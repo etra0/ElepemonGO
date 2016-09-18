@@ -5,7 +5,7 @@ struct attack_result* attack(struct elepemon* attacker, struct elepemon* defenso
     struct attack_result* attack_info;
     int power, defense, standard_damage;
     attack_info = malloc(sizeof(struct attack_result));
-    attack_info->attack_id = "plant1";
+    attack_info->attack_id = "Latigocepa";
     attack_info->defensor = defensor;
     attack_info->attacker = attacker;
     attack_info->effect = POISONED;

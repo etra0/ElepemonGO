@@ -5,27 +5,23 @@ struct attack_result* attack(struct elepemon* attacker, struct elepemon* defenso
     struct attack_result* attack_info;
     int power, defense, standard_damage;
     attack_info = malloc(sizeof(struct attack_result));
-    attack_info->attack_id = "fuego1";
+    attack_info->attack_id = "Hidrobomba";
     attack_info->defensor = defensor;
     attack_info->attacker = attacker;
-    attack_info->effect = NOEFFECT;
+    attack_info->effect = PARALYZED;
     power = attacker->power;
     defense = defensor->defense;
+    standard_damage = (power/2)-(defense/3);
 
-    if (power>defense) {
-        standard_damage = (power/2)-(defense/3);
-    } else{
-        standard_damage = (power/2);
-    }
-    if (defensor->type == 3) {
-        attack_info->effective = 3;
-        attack_info->damage_done = 70+standard_damage;
-    } else if (defensor->type == WATER) {
+    if (defensor->type == FIRE) {
+        attack_info->effective = SUPER;
+        attack_info->damage_done = 200+standard_damage;
+    } else if (defensor->type == PLANT) {
         attack_info->effective = NO;
-        attack_info->damage_done = 30+standard_damage;
+        attack_info->damage_done = 0;
     } else {
         attack_info->effective = NONE;
-        attack_info->damage_done = 50+standard_damage;
+        attack_info->damage_done = standard_damage;
     }
 
     defensor->hp = (defensor->hp) - (attack_info->damage_done);

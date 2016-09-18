@@ -2,34 +2,33 @@
 hp=90
 defense=78
 type=FiRE
-attacks=fuego1
+power=32
+attacks=Lanzallamas
 
 [Charizard]
 hp=99999
 defense=999
+power=322
 type=water
-attacks=fuego1
+attacks=Lanzallamas,Piroexplosion
 
-[asfsf]
+[Vinasaur]
 hp=199
 defense=999
+power=3211
 type=plANT
-attacks=plant1
+attacks=Latigocepa,Rayosolar
 
-[auto]
+[Blastoise]
 hp=99999
 defense=999
+power=1
 type=water
-attacks=fuego1
+attacks=Hidrobomba,Surf
 
-[marco]
+[Lugia]
 hp=99999
 defense=999
+power=32
 type=water
-attacks=fuego1
-
-[elfo]
-hp=99999
-defense=999
-type=water
-attacks=fuego1
+attacks=Hiperrayo,Rapidez
