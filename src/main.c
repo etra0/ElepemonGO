@@ -4,9 +4,6 @@
 #define MATCH(s, n) strcmp(section, s) == 0 && strcmp(name, n) == 0
 #define input printf("\n> ")
 
-// temporal
-void recorrer(struct elepemon_node* stack);
-
 static int handler(void* elepemon, const char* section, const char* name,
                    const char* value)
 {
@@ -68,7 +65,6 @@ int main(int argc, char* argv[])
 
     int end = 0, choices, elepemones_per_player, i, j;
     int quantity;
-    int is_dead;
 
     /* Verify if the file was loaded correctly and it parses inmediatly*/
     if (ini_parse(elepemones_filename, handler, &main_stack) < 0) {
@@ -76,8 +72,8 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    quantity = stack_size(main_stack);
-    
+    quantity = get_stack_size(main_stack);
+
     printf("Bienvenidos a un nuevo elepeduelo\n");
     printf("Ingrese el nombre del primer entrenador: ");
     input; scanf("%s", buffer);
@@ -99,14 +95,14 @@ int main(int argc, char* argv[])
         printf("%s, elije tus elepemones:\n", player_names[i]);
         for (j = 0; j < elepemones_per_player; j++) {
             do {
-            recorrer(main_stack);
+            print_stack(main_stack);
 
             input; scanf("%d", &choices);
 
             if (choices <= 0 || (choices > quantity))
                 printf("Ingrese un numero valido!\n");
             else
-                quantity = stack_size(main_stack);
+                quantity = get_stack_size(main_stack);
 
             } while ((choices <= 0) || (choices > quantity));
 
@@ -115,10 +111,10 @@ int main(int argc, char* argv[])
     }
 
     printf("Elepemones %s:\n",player_names[0]);
-    recorrer(stack[0]);
+    print_stack(stack[0]);
     printf("\n---------\n");
     printf("Elepemones %s:\n", player_names[1]);
-    recorrer(stack[1]);
+    print_stack(stack[1]);
     printf("\n---------\n");
 
     printf("IT'S TIME TO DU-DU-DU-DU-DUEL!!!11!!uno!\n");
@@ -128,6 +124,13 @@ int main(int argc, char* argv[])
         do {
             printf("%s, que elepemon ataca?", player_names[i]);
             input; scanf("%s", buffer);
+            if (strcmp(buffer, "*LISTA*") == 0) {
+                printf("Actualmente, tienes estos elepemones:\n");
+                print_stack(stack[i]);
+                printf("\n\n");
+                elepemon_selected[0] = NULL;
+                continue;
+            }
             elepemon_selected[0] = get_elepemon(stack[i], buffer);
             if (elepemon_selected[0] == NULL)
                 printf("No tienes ese elepemon!, ");
@@ -136,6 +139,14 @@ int main(int argc, char* argv[])
         do {
             printf("Que ataque usara?");
             input; scanf("%s", buffer);
+
+            if (strcmp(buffer, "*ATAQUES*") == 0) {
+                printf("El elepemon %s tiene estos ataques:\n", elepemon_selected[0]->name);
+                read_attacks(elepemon_selected[0]);
+                printf("\n\n");
+                choices = -1;
+                continue;
+            }
             /* reutilizacion de choices, en este caso, actua como booleano */
             choices = verify_attack(elepemon_selected[0], buffer);
             if (choices == -1) {
@@ -148,40 +159,44 @@ int main(int argc, char* argv[])
         do {
             printf("%s, a que elepemon ataca?", elepemon_selected[0]->name);
             input; scanf("%s", buffer);
+
+            /* Comando para verificar que elepemones tiene el enemigo */
+            if (strcmp(buffer, "*LISTA*") == 0) {
+                printf("Actualmente, el enemigo tiene estos elepemones:\n");
+                print_stack(stack[!i]);
+                printf("\n\n");
+                elepemon_selected[1] = NULL;
+                continue;
+            }
+
             /* Debido a que son solo 2 jugadores, el contrapuesto es el negado del actual */
             elepemon_selected[1] = get_elepemon(stack[!i], buffer);
             if (elepemon_selected[1] == NULL)
                 printf("El enemigo no tiene ese elepemon!, ");
+
         } while (elepemon_selected[1] == NULL);
 
         check_attack(elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]));
-        // is_dead  = check_attack(elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]));
-        // if (is_dead) {
-        //     move_stack_node()
-        // }
-        // printf("%d\n", find_indice(stack[!i], elepemon_selected[1], stack_size(stack[!i])));
-        end = 1;
+
+        if (elepemon_selected[1]->hp <= 0) {
+            printf("El elepemon %s ha muerto! :(\n", elepemon_selected[1]->name);
+            move_stack_node(&stack[!i], &deadpool, find_index(stack[!i], elepemon_selected[1]));
+        }
+
+        if (get_stack_size(stack[!i]) == 0) {
+            printf("El jugador %s se ha queado sin elepemones.\n\n", player_names[!i]);
+            printf("Felicidades %s, has ganado!", player_names[i]);
+            end = 1;
+        }
+
+        i = !i;
     }
 
     unload_attacks();
-    free_elepemon_stack(main_stack); free_elepemon_stack(stack[0]); free_elepemon_stack(stack[1]);
+    free_elepemon_stack(main_stack);
+    free_elepemon_stack(stack[0]); free_elepemon_stack(stack[1]);
+    free_elepemon_stack(deadpool);
     main_stack = NULL; stack[0] = NULL; stack[1] = NULL;
-    // free(stack);
-    // load_attacks("attacks", get_elepemon(stack, "Charmander"));
-    // load_attacks("attacks", get_elepemon(stack, "Charizard"));
-    // load_attacks("attacks", get_elepemon(stack, "asfsf"));
-
-
-    // unload_attacks();
-
-    // recorrer(stack);
-
-    // print_elepemon(&(stack->elepemon));
-    // printf("FREE\n");
-    // free_elepemon_stack(stack);
-    // stack = NULL;
-    // print_elepemon(&(stack->elepemon));
-    // // recorrer(stack);
 
     return 0;
 

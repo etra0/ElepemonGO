@@ -40,10 +40,10 @@ debido a que el ejecutable se guarda en la carpeta bin
 |To-Do|Estado|
 |----|----|
 |Deadpool|0|
-|Hacer funciones ataque|4/8|
-|Terminar el loop principal|0|
+|Hacer funciones ataque|8/8|
+|Terminar el loop principal|1|
 |Armar struct attack|listo|
-|Documentar|0|
+|Documentar|0.5|
 
 # Supuestos
 
