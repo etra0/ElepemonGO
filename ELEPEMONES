@@ -9,7 +9,7 @@ attacks=Lanzallamas
 hp=99999
 defense=999
 power=322
-type=water
+type=Fire
 attacks=Lanzallamas,Piroexplosion
 
 [Vinasaur]
@@ -30,5 +30,5 @@ attacks=Hidrobomba,Surf
 hp=99999
 defense=999
 power=32
-type=water
+type=Normal
 attacks=Hiperrayo,Rapidez

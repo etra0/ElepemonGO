@@ -92,7 +92,7 @@ int main(int argc, char* argv[])
 
 
     for (i = 0; i < 2; i++) {
-        printf("%s, elije tus elepemones:\n", player_names[i]);
+        printf("%s, elije tus elepemones (uno a uno y utiizando numeros):\n", player_names[i]);
         for (j = 0; j < elepemones_per_player; j++) {
             do {
             print_stack(main_stack);

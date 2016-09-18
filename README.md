@@ -39,7 +39,7 @@ debido a que el ejecutable se guarda en la carpeta bin
 
 |To-Do|Estado|
 |----|----|
-|Deadpool|0|
+|Deadpool|1|
 |Hacer funciones ataque|8/8|
 |Terminar el loop principal|1|
 |Armar struct attack|listo|
