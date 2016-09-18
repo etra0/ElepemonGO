@@ -71,7 +71,8 @@ int main(int argc, char* argv[])
     }
 
     quantity = stack_size(main_stack);
-
+    
+    printf("Bienvenidos a un nuevo elepeduelo\n");
     printf("Ingrese el nombre del primer entrenador: ");
     input; scanf("%s", buffer);
     player_names[0] = strdup(buffer);
@@ -104,10 +105,10 @@ int main(int argc, char* argv[])
         }
     }
 
-    printf("Elepemones 1:\n");
+    printf("Elepemones %s:\n",player_names[0]);
     recorrer(stack[0]);
     printf("\n---------\n");
-    printf("Elepemones 2:\n");
+    printf("Elepemones %s:\n", player_names[1]);
     recorrer(stack[1]);
     printf("\n---------\n");
 
