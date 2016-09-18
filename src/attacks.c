@@ -17,7 +17,7 @@ char** get_attack_ids(const char* str, int* n)
 	for (i = 0; i < strlen(str); i++)
 		if (str[i] == ',')
 			(*n)++;
-	/* al ser en el formato at1,at2 falta contar una coma, por ende: */
+	/* al ser en el formato at1,at2 falta contar un ataque, por ende: */
 	(*n)++;
 
 	array = malloc(sizeof(char *) * (*n));
@@ -76,22 +76,23 @@ void unload_attacks()
 
 void check_attack(struct attack_result* attack_info)
 {
+	int is_dead = 0;
     printf("%s ha usado %s contra %s\n",attack_info->attacker->name, attack_info->attack_id, attack_info->defensor->name);
     printf("Ha causado un daño de %d puntos de vida\n", attack_info->damage_done);
     
-    if (attack_info->effective == 0){ 
-            printf("No ha sido efectivo\n");
-    }else if(attack_info->effective == 2){
+    if (attack_info->effective == NO){ 
+        printf("No ha sido efectivo\n");
+    }else if(attack_info->effective == NOTVERY){
         printf("No ha sido muy efectivo\n");
-    }else if(attack_info->effective == 3){
+    }else if(attack_info->effective == SUPER){
         printf("Ha sido super efectivo\n");
     }
     
-    if (attack_info->effect == 1){
+    if (attack_info->effect == CONFUSED){
         printf("%s ha quedado confuso\n", attack_info->defensor->name);
-    }else if(attack_info->effect == 2){
+    }else if(attack_info->effect == POISONED){
         printf("%s ha quedado envenenado\n", attack_info->defensor->name);
-    }else if(attack_info->effect == 3){
+    }else if(attack_info->effect == PARALYZED){
         printf("%s ha quedado paralizado\n", attack_info->defensor->name);
     }
     

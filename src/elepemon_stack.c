@@ -82,6 +82,16 @@ void move_stack_node(struct elepemon_node** from, struct elepemon_node** to, int
     return;
 }
 
+int find_indice(struct elepemon_node *stack, struct elepemon *elepemon, int stack_size)
+{
+    int i;
+    for (i = 1; i <= stack_size; i++) {
+        if (&(stack->elepemon) == elepemon)
+            return i;
+    }
+    return 0;
+}
+
 int stack_size(struct elepemon_node *stack)
 {
     int i = 0;

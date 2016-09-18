@@ -8,7 +8,7 @@ struct attack_result* attack(struct elepemon* attacker, struct elepemon* defenso
     attack_info->attack_id = "plant1";
     attack_info->defensor = defensor;
     attack_info->attacker = attacker;
-    attack_info->effect = 2;
+    attack_info->effect = POISONED;
     power = attacker->power;
     defense = defensor->defense;
     
@@ -18,14 +18,14 @@ struct attack_result* attack(struct elepemon* attacker, struct elepemon* defenso
         standard_damage = (power/2);
     }
 
-    if (defensor->type == 0) {
-        attack_info->effective = 3;
+    if (defensor->type == NORMAL) {
+        attack_info->effective = SUPER;
         attack_info->damage_done = 60+standard_damage;
-    } else if (defensor->type == 2) {
-        attack_info->effective = 0;
+    } else if (defensor->type == FIRE) {
+        attack_info->effective = NO;
         attack_info->damage_done = 15+standard_damage;
     } else {
-        attack_info->effective = 1;
+        attack_info->effective = NONE;
         attack_info->damage_done = 50+standard_damage;
     }
 

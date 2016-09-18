@@ -14,7 +14,7 @@ attacks=fuego1
 hp=199
 defense=999
 type=plANT
-attacks=fuego1
+attacks=plant1
 
 [auto]
 hp=99999

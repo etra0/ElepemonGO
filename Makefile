@@ -9,13 +9,13 @@ SRC=src
 
 default: $(OUT)
 
-compile: elepemon.o stack.o attacks.o $(SRC)/main.c
+compile: elepemon_stack.o elepemon.o handler_stack.o attacks.o $(SRC)/main.c
 	$(CC) $(CFLAGS) -L./ $(SRC)/main.c objects/*.o -linih -ldl -o bin/$(EXEC)
 
 elepemon.o: $(SRC)/elepemon.c
 	$(CC) $(CFLAGS) $< -c -o objects/$@
 
-stack.o: $(SRC)/elepemon_stack.c
+elepemon_stack.o: $(SRC)/elepemon_stack.c
 	$(CC) $(CFLAGS) $< -c -o objects/$@
 
 attacks.o: objects/handler_stack.o $(SRC)/attacks.c

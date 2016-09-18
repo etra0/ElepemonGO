@@ -53,8 +53,13 @@ int main(int argc, char* argv[])
     char *attack_folder = strdup(argv[1]);
 
     struct elepemon_node *main_stack = NULL;
-    // Stack de los jugadores, que se sacaran del main_stack.
+
+    /* Stack de los jugadores, que se sacaran del main_stack. */
     struct elepemon_node *stack[2] = {NULL, NULL};
+
+    /* Stack en el cual se almacenaran los elepemones muertos,
+     * Para despues liberarlos con mayor facilidad */
+    struct elepemon_node *deadpool = NULL;
 
     /* el indice 0 corresponde al atacante, el 1 al defensor */
     struct elepemon *elepemon_selected[2] = {NULL, NULL};
@@ -63,6 +68,7 @@ int main(int argc, char* argv[])
 
     int end = 0, choices, elepemones_per_player, i, j;
     int quantity;
+    int is_dead;
 
     /* Verify if the file was loaded correctly and it parses inmediatly*/
     if (ini_parse(elepemones_filename, handler, &main_stack) < 0) {
@@ -99,6 +105,9 @@ int main(int argc, char* argv[])
 
             if (choices <= 0 || (choices > quantity))
                 printf("Ingrese un numero valido!\n");
+            else
+                quantity = stack_size(main_stack);
+
             } while ((choices <= 0) || (choices > quantity));
 
             move_stack_node(&main_stack, &stack[i], choices);
@@ -146,6 +155,11 @@ int main(int argc, char* argv[])
         } while (elepemon_selected[1] == NULL);
 
         check_attack(elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]));
+        // is_dead  = check_attack(elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]));
+        // if (is_dead) {
+        //     move_stack_node()
+        // }
+        // printf("%d\n", find_indice(stack[!i], elepemon_selected[1], stack_size(stack[!i])));
         end = 1;
     }
 

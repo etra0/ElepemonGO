@@ -196,6 +196,7 @@ int stack_size(struct elepemon_node *stack);
 
 // Verifica si es que un elepemon tiene un ataque dado
 int verify_attack(struct elepemon *elepemon, char *str);
+int find_indice(struct elepemon_node *stack, struct elepemon *elepemon, int stack_size);
 
 // Entrega la informacion resultante de cada ataque
 void check_attack(struct attack_result* attack_info);
