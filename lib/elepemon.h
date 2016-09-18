@@ -182,22 +182,30 @@ void free_elepemon_stack(struct elepemon_node* stack);
 
 // Agregado
 
-// Funcion booleana que ve si un stack esta vacio o no
+/* Funcion booleana que ve si un stack esta vacio o no */
 int is_empty(struct elepemon_node* stack);
 
-// Mueve un elemento de un stack a otro stack
+/* Mueve un elemento de un stack a otro stack */
 void move_stack_node(struct elepemon_node** from, struct elepemon_node** to, int indice);
 
-// Se utiliza para parsear los tipo de string a numero
+/* Se utiliza para parsear los tipo de string a numero */
 void parse_type(const char *str, enum type *n);
 
-// Retorna el tamaño de un stack
-int stack_size(struct elepemon_node *stack);
+/* Retorna el tamanno de un stack */
+int get_stack_size(struct elepemon_node *stack);
 
-// Verifica si es que un elepemon tiene un ataque dado
+/* Verifica si es que un elepemon tiene un ataque dado */
 int verify_attack(struct elepemon *elepemon, char *str);
-int find_indice(struct elepemon_node *stack, struct elepemon *elepemon, int stack_size);
 
-// Entrega la informacion resultante de cada ataque
+/* Imprime la lista de ataques de un elepemon */
+void read_attacks(struct elepemon *elepemon);
+
+/* Encuentra el indice de un elepemon en un stack */
+int find_index(struct elepemon_node *stack, struct elepemon *elepemon);
+
+/* Entrega la informacion resultante de cada ataque */
 void check_attack(struct attack_result* attack_info);
+
+/* Funcion que imprime la lista de elepemones en un stack */
+void print_stack(struct elepemon_node* stack);
 #endif // ELEPEMON_H

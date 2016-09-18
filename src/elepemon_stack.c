@@ -31,7 +31,7 @@ void free_elepemon_stack(struct elepemon_node* stack)
 
 }
 
-void recorrer(struct elepemon_node* stack)
+void print_stack(struct elepemon_node* stack)
 {
     int i = 1;
     struct elepemon_node* ptr = stack;
@@ -82,17 +82,20 @@ void move_stack_node(struct elepemon_node** from, struct elepemon_node** to, int
     return;
 }
 
-int find_indice(struct elepemon_node *stack, struct elepemon *elepemon, int stack_size)
+int find_index(struct elepemon_node *stack, struct elepemon *elepemon)
 {
-    int i;
-    for (i = 1; i <= stack_size; i++) {
+    int i = 0;
+    int stack_size = get_stack_size(stack);
+    while(stack != NULL) {
+        i++;
         if (&(stack->elepemon) == elepemon)
             return i;
+        stack = stack->next;
     }
     return 0;
 }
 
-int stack_size(struct elepemon_node *stack)
+int get_stack_size(struct elepemon_node *stack)
 {
     int i = 0;
     while (!is_empty(stack)) {

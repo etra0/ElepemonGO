@@ -5,23 +5,23 @@ INCLUDES = -I..
 CCFLAGS =-Wall -g -O2
 EXEC=tarea1
 CC=gcc
-SRC=src
+SRCCODE=src
 
 default: $(OUT)
 
-compile: elepemon_stack.o elepemon.o handler_stack.o attacks.o $(SRC)/main.c
-	$(CC) $(CFLAGS) -L./ $(SRC)/main.c objects/*.o -linih -ldl -o bin/$(EXEC)
+compile: elepemon_stack.o elepemon.o handler_stack.o attacks.o $(SRCCODE)/main.c
+	$(CC) $(CFLAGS) -L./ $(SRCCODE)/main.c objects/*.o -linih -ldl -o bin/$(EXEC)
 
-elepemon.o: $(SRC)/elepemon.c
+elepemon.o: $(SRCCODE)/elepemon.c
 	$(CC) $(CFLAGS) $< -c -o objects/$@
 
-elepemon_stack.o: $(SRC)/elepemon_stack.c
+elepemon_stack.o: $(SRCCODE)/elepemon_stack.c
 	$(CC) $(CFLAGS) $< -c -o objects/$@
 
-attacks.o: objects/handler_stack.o $(SRC)/attacks.c
-	$(CC) $(CFLAGS) $(SRC)/attacks.c -c -o objects/$@
+attacks.o: objects/handler_stack.o $(SRCCODE)/attacks.c
+	$(CC) $(CFLAGS) $(SRCCODE)/attacks.c -c -o objects/$@
 
-handler_stack.o: $(SRC)/handler_stack.c
+handler_stack.o: $(SRCCODE)/handler_stack.c
 	$(CC) $(CFLAGS) $< -c -o objects/$@
 
 run:

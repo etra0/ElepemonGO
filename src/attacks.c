@@ -33,6 +33,14 @@ char** get_attack_ids(const char* str, int* n)
 	return array;
 }
 
+void read_attacks(struct elepemon *elepemon)
+{
+	int quantity = elepemon->attack.attack_count;
+	while (quantity--) {
+		printf("%s\n", elepemon->attack.attack_ids[quantity]);
+	}
+}
+
 int load_attacks(const char* attacks_filedir, struct elepemon* elepemon)
 {
 	int i = 0;
@@ -79,23 +87,23 @@ void check_attack(struct attack_result* attack_info)
 	int is_dead = 0;
     printf("%s ha usado %s contra %s\n",attack_info->attacker->name, attack_info->attack_id, attack_info->defensor->name);
     printf("Ha causado un daño de %d puntos de vida\n", attack_info->damage_done);
-    
-    if (attack_info->effective == NO){ 
+
+    if (attack_info->effective == NO) {
         printf("No ha sido efectivo\n");
-    }else if(attack_info->effective == NOTVERY){
+    } else if (attack_info->effective == NOTVERY) {
         printf("No ha sido muy efectivo\n");
-    }else if(attack_info->effective == SUPER){
+    } else if (attack_info->effective == SUPER) {
         printf("Ha sido super efectivo\n");
     }
-    
-    if (attack_info->effect == CONFUSED){
+
+    if (attack_info->effect == CONFUSED) {
         printf("%s ha quedado confuso\n", attack_info->defensor->name);
-    }else if(attack_info->effect == POISONED){
+    } else if (attack_info->effect == POISONED) {
         printf("%s ha quedado envenenado\n", attack_info->defensor->name);
-    }else if(attack_info->effect == PARALYZED){
+    } else if (attack_info->effect == PARALYZED) {
         printf("%s ha quedado paralizado\n", attack_info->defensor->name);
     }
-    
+
     free(attack_info);
     return;
 }
