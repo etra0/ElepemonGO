@@ -23,8 +23,9 @@ void* pop_handler(handler_stack **stack)
 
 	handler = (*stack)->handler;
 	aux = *stack;
-
 	*stack = (*stack)->next;
+
+	dlclose(handler);
 	free(aux);
 
 	return handler;

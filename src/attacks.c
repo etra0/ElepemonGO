@@ -46,9 +46,9 @@ int load_attacks(const char* attacks_filedir, struct elepemon* elepemon)
 	int i = 0;
 
 	void *handle;
-	char* filename = "";
+	char *filename = "";
 
-	elepemon->attack.attacks = malloc(sizeof(attack_t*) * elepemon->attack.attack_count);
+	elepemon->attack.attacks = malloc(sizeof(attack_t) * (elepemon->attack.attack_count));
 
 	for (i = 0; i < elepemon->attack.attack_count; i++) {
 		filename = strdup(attacks_filedir);
@@ -78,7 +78,7 @@ int verify_attack(struct elepemon *elepemon, char *str)
 void unload_attacks()
 {
 	while (global_handlers != NULL) {
-		dlclose(pop_handler(&global_handlers));
+		pop_handler(&global_handlers);
 	}
 }
 

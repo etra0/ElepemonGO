@@ -54,9 +54,9 @@ void free_elepemon(struct elepemon* elepemon)
     for (i = 0; i < elepemon->attack.attack_count; i++) {
         free(elepemon->attack.attack_ids[i]);
     }
-    
+
     free(elepemon->attack.attack_ids);
-    free(elepemon->attack.attacks);
+    // free(elepemon->attack.attacks);
 
     free(elepemon->name);
 }

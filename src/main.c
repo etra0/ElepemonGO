@@ -212,7 +212,11 @@ int main(int argc, char* argv[])
 
     unload_attacks();
     free_elepemon_stack(main_stack);
-    free_elepemon_stack(stack[0]); free_elepemon_stack(stack[1]);
+    if (stack[0] != NULL)
+        free_elepemon_stack(stack[0]);
+    else
+        free_elepemon_stack(stack[1]);
+    //
     free_elepemon_stack(deadpool);
     main_stack = NULL; stack[0] = NULL; stack[1] = NULL;
 
