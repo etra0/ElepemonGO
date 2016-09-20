@@ -9,7 +9,8 @@ char* translate_type(enum type value)
 	                "WATER",
 	                "FIRE",
 	                "PLANT" };
-    return types[value];
+    char *final_type = strdup(types[value]);
+    return final_type;
 }
 
 void print_elepemon(const struct elepemon* elepemon)
@@ -18,14 +19,16 @@ void print_elepemon(const struct elepemon* elepemon)
         printf("There's no Elepemon!");
         return;
     }
+    char *type = translate_type(elepemon->type);
     int i = 0;
     printf("Name: \t %s\n", elepemon->name);
     printf("HP: \t %d\n", elepemon->hp);
     printf("Defense: %d\n", elepemon->defense);
-    printf("Type: \t %s\n", translate_type(elepemon->type));
+    printf("Type: \t %s\n", type);
     for (i = 0; i < elepemon->attack.attack_count; i++)
         printf("ATTACK %d: %s\n", i+1, elepemon->attack.attack_ids[i]);
 
+    free(type);
 }
 
 void init_elepemon(struct elepemon* elepemon)
