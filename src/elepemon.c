@@ -9,9 +9,7 @@ char* translate_type(enum type value)
 	                "WATER",
 	                "FIRE",
 	                "PLANT" };
-    char *final_type = strdup(types[value]);
-
-    return final_type;
+    return types[value];
 }
 
 void print_elepemon(const struct elepemon* elepemon)

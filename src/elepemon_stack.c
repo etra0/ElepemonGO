@@ -25,7 +25,7 @@ void free_elepemon_stack(struct elepemon_node* stack)
     while (!(is_empty(stack))) {
         free_elepemon(&(stack->elepemon));
         aux = stack;
-        stack = stack-> next;
+        stack = stack->next;
         free(aux);
     }
 
