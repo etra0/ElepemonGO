@@ -5,6 +5,8 @@
 | Sebastián Aedo |201573057-1|saedo|
 | Gaspar Correa |201573009-1|gcorrea|
 
+# Instrucciones
+
 Para compilar el código correctamente, necesitamos [**inih**](https://github.com/benhoyt/inih) en la carpeta raíz del código:
 ```bash
 git clone https://github.com/benhoyt/inih.git
@@ -30,6 +32,14 @@ debido a que el ejecutable se guarda en la carpeta bin
 * Se asume que no habrán elepemones con el mismo nombre.
 * Se exige que el primer parametro sea el directorio donde estarán los ataques y el segundo el nombre del ini.
 * Se exige que al escoger los elepemones se utilicen números.
+
+
+# Breve descripción de la estrategia
+
+* Se tiene el stack principal, donde se cargan todos los elepemones, luego se tiene un stack por cada jugador, los cuales tienenlos punteros a los elepemones de cada uno. Y por último, se tiene un stack `deadpool`, en el cual se almacenan los elepemones muertos.
+
+* Respecto al cargado dinámico de los ataques, preferimos por cargar los ataques solo cuando el usuario desee utilizarlos, los handlers respectivos los almacenamos en un stack de handlers `global_handlers`, con el fin de una vez finalizado el programa, realizar un `dlclose` a todos los handlers del stack.
+
 
 # Ejemplo
 ```
