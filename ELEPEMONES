@@ -6,7 +6,7 @@ power=32
 attacks=Lanzallamas
 
 [Charizard]
-hp=99999
+hp=780
 defense=999
 power=322
 type=Fire
@@ -20,14 +20,14 @@ type=plANT
 attacks=Latigocepa,Rayosolar
 
 [Blastoise]
-hp=99999
+hp=321
 defense=999
 power=1
 type=water
 attacks=Hidrobomba,Surf
 
 [Lugia]
-hp=99999
+hp=123
 defense=999
 power=32
 type=Normal

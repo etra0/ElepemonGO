@@ -59,8 +59,8 @@ int main(int argc, char* argv[])
         return -1;
     }
 
-    char *elepemones_filename = strdup(argv[2]);
-    char *attack_folder = strdup(argv[1]);
+    char *elepemones_filename = argv[2];
+    char *attack_folder = argv[1];
 
     struct elepemon_node *main_stack = NULL;
 
@@ -79,10 +79,11 @@ int main(int argc, char* argv[])
     int end = 0, choices, elepemones_per_player, i, j;
     int quantity;
 
-    if (!is_regular_file(elepemones_filename)) {
+    if (!is_regular_file(elepemones_filename) || is_regular_file(attack_folder)) {
         printf("Parametros incorrectos.\n");
         return 1;
     }
+
     /* Verify if the file was loaded correctly and it parses inmediatly*/
     if (ini_parse(elepemones_filename, handler, &main_stack) < 0) {
         printf("No se pudieron cargar los '%s'\n", elepemones_filename);
