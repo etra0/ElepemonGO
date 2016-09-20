@@ -33,26 +33,29 @@ debido a que el ejecutable se guarda en la carpeta bin
 
 # Ejemplo
 ```
-
 Bienvenidos a un nuevo elepeduelo
-Ingrese el nombre del primer entrenador:
-> Ingrese el nombre del segundo entrenador:
-> Ingrese la cantidad de elepemones:
-
-> Gaspar, elije tus elepemones (uno a uno y utiizando numeros):
+Ingrese el nombre del primer entrenador: 
+> Gaspar
+Ingrese el nombre del segundo entrenador: 
+> Sebastian
+Ingrese la cantidad de elepemones:
+> 1
+Gaspar, elije tus elepemones (uno a uno y utiizando numeros):
 1. Lugia
 2. Blastoise
 3. Vinasaur
 4. Charizard
 5. Charmander
 
-> Sebastian, elije tus elepemones (uno a uno y utiizando numeros):
+> 3
+Sebastian, elije tus elepemones (uno a uno y utiizando numeros):
 1. Lugia
 2. Blastoise
 3. Charizard
 4. Charmander
 
-> Elepemones Gaspar:
+> 4
+Elepemones Gaspar:
 1. Vinasaur
 
 ---------
@@ -62,15 +65,30 @@ Elepemones Sebastian:
 ---------
 IT'S TIME TO DU-DU-DU-DU-DUEL!!!11!!uno!
 Gaspar, que elepemon ataca?
-> Que ataque usara?
-> Vinasaur, a que elepemon ataca?
-> Vinasaur ha usado Latigocepa contra Charmander
-Ha causado un daño de 1594 puntos de vida
+> Lugia
+No tienes ese elepemon!, Gaspar, que elepemon ataca?
+> *LISTA* 
+Actualmente, tienes estos elepemones:
+1. Vinasaur
+
+
+Gaspar, que elepemon ataca?
+> Vinasaur
+Que ataque usara?
+> *ATAQUES*
+El elepemon Vinasaur tiene estos ataques:
+Rayosolar
+Latigocepa
+
+Vinasaur, a que elepemon ataca?
+> Charmander
+Vinasaur ha usado Rayosolar contra Charmander
+Ha causado un daño de 130 puntos de vida
 No ha sido efectivo
-Charmander ha quedado envenenado
 El elepemon Charmander ha muerto! :(
 El jugador Sebastian se ha quedado sin elepemones.
 
 Felicidades Gaspar, has ganado!
 
 ```
+
