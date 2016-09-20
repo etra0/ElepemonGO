@@ -182,13 +182,23 @@ void free_elepemon_stack(struct elepemon_node* stack);
 
 // Agregado
 
-/* Funcion booleana que ve si un stack esta vacio o no */
+/* Funcion booleana que ve si un stack esta vacio o no
+* @param stack pila de elepemones
+* @return booleano que describe si esta vacia
+*/
 int is_empty(struct elepemon_node* stack);
 
-/* Mueve un elemento de un stack a otro stack */
+/* Mueve un elemento de un stack a otro
+* @param from pila inicial de donde se sacara el nodo
+* @param to pila donde llegara el nodo
+* @param indice corresponde al indice del elemento en el stack "from"
+*/
 void move_stack_node(struct elepemon_node** from, struct elepemon_node** to, int indice);
 
-/* Se utiliza para parsear los tipo de string a numero */
+/* Se utiliza para parsear los tipo de string a numero
+* @param str corresponde al string que se desea parsear
+* @param n puntero al tipo de un elepemon, para modificarlo directamente.
+*/
 void parse_type(const char *str, enum type *n);
 
 /* Retorna el tamanno de un stack */

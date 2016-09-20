@@ -5,7 +5,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
 #define MATCH(s, n) strcmp(section, s) == 0 && strcmp(name, n) == 0
 #define input printf("\n> ")
 
@@ -60,8 +59,8 @@ int main(int argc, char* argv[])
         return -1;
     }
 
-    const char *elepemones_filename = argv[2];
     const char *attack_folder = argv[1];
+    const char *elepemones_filename = argv[2];
 
     struct elepemon_node *main_stack = NULL;
 
@@ -92,7 +91,7 @@ int main(int argc, char* argv[])
     }
 
     quantity = get_stack_size(main_stack);
-	
+
 
     printf("Bienvenidos a un nuevo elepeduelo\n");
     printf("Ingrese el nombre del primer entrenador: ");
@@ -136,7 +135,7 @@ int main(int argc, char* argv[])
     printf("Elepemones %s:\n", player_names[1]);
     print_stack(stack[1]);
     printf("\n---------\n");
-	
+
 
     printf("IT'S TIME TO DU-DU-DU-DU-DUEL!!!11!!uno!\n");
 
@@ -175,7 +174,6 @@ int main(int argc, char* argv[])
             }
         } while (choices == -1);
 
-		printf("IS NULL %d\n", elepemon_selected[0]->attack.attacks == NULL);
 		if (elepemon_selected[0]->attack.attacks == NULL)
 			load_attacks(attack_folder, elepemon_selected[0]);
 

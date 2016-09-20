@@ -4,13 +4,14 @@
 
 char* translate_type(enum type value)
 {
-    char types[4][6] = {"NORMAL",
+    char types[4][6] = {
+                    "NORMAL",
 	                "WATER",
 	                "FIRE",
-	                "PLANT"};
-    char *type = strdup(types[value]);
+	                "PLANT" };
+    char *final_type = strdup(types[value]);
 
-    return type;
+    return final_type;
 }
 
 void print_elepemon(const struct elepemon* elepemon)
@@ -56,7 +57,7 @@ void free_elepemon(struct elepemon* elepemon)
     }
 
     free(elepemon->attack.attack_ids);
-    // free(elepemon->attack.attacks);
+    free(elepemon->attack.attacks);
 
     free(elepemon->name);
 }
@@ -77,4 +78,5 @@ void parse_type(const char *str, enum type *n)
     } else {
         *n = NORMAL;
     }
+    free(str_to_parse);
 }

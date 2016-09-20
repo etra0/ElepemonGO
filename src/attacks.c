@@ -47,9 +47,6 @@ int load_attacks(const char* attacks_filedir, struct elepemon* elepemon)
 
 	void *handle;
 	char filename[100];
-	printf("Directorio: %s", attacks_filedir);
-	
-	print_elepemon(elepemon);
 
 	elepemon->attack.attacks = malloc(sizeof(attack_t) * (elepemon->attack.attack_count));
 
@@ -61,13 +58,10 @@ int load_attacks(const char* attacks_filedir, struct elepemon* elepemon)
 		strcat(filename, "lib");
 		strcat(filename, elepemon->attack.attack_ids[i]);
 		strcat(filename, ".so");
-		
-		printf("FILENAME: %s\n", filename);
-		printf("FILEDIR: %s\n", attacks_filedir);
 
 		handle = dlopen(filename, RTLD_NOW);
 		dlerror();
-//
+
 		push_handler(&global_handlers, handle);
 
 		*(elepemon->attack.attacks+i) = dlsym(handle, ATTACK_FN);

@@ -21,7 +21,7 @@ void pop_handler(handler_stack **stack)
 
 	aux = *stack;
 	handler = aux->handler;
-	
+
 	*stack = (*stack)->next;
 
 	dlclose(handler);

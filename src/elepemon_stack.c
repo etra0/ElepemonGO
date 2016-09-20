@@ -9,7 +9,7 @@ struct elepemon* get_elepemon(struct elepemon_node* stack, const char* name)
 {
     struct elepemon_node* ptr = stack;
 
-    while (!(is_empty (ptr))) {
+    while (!(is_empty(ptr))) {
         if (!strcmp(ptr->elepemon.name, name)) {
             return &(ptr->elepemon);
         }
@@ -34,7 +34,7 @@ void free_elepemon_stack(struct elepemon_node* stack)
 void print_stack(struct elepemon_node* stack)
 {
     int i = 1;
-    struct elepemon_node* ptr = stack;
+    struct elepemon_node *ptr = stack;
     if (ptr == NULL) {
         printf("vacio\n");
         return;
