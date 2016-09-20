@@ -31,17 +31,20 @@ debido a que el ejecutable se guarda en la carpeta bin
 
 * Se asume que no habrán elepemones con el mismo nombre.
 * Se exige que el primer parametro sea el directorio donde estarán los ataques y el segundo el nombre del ini.
-* Se exige que al escoger los elepemones se utilicen números.
-
+* Se exige que al escoger los elepemones se utilicen números, no asi a la hora de atacar, en este caso se realiza con sus respectivos nombres.
+* Se asume que cada ataque realiza efectivamente los cambios de estado de cada elepemon, nuestro main solo llama las funciones de ataque,imprime los resultados y luego chequea si es que algun elepemon ha muerto.
 
 # Breve descripción de la estrategia
 
-* Se tiene el stack principal, donde se cargan todos los elepemones, luego se tiene un stack por cada jugador, los cuales tienenlos punteros a los elepemones de cada uno. Y por último, se tiene un stack `deadpool`, en el cual se almacenan los elepemones muertos.
+* Se tiene el stack principal, donde se cargan todos los elepemones del ini, luego se tiene un stack por cada jugador, los cuales tienen los punteros a los elepemones de cada uno. Y por último, se tiene un stack `deadpool`, en el cual se almacenan los elepemones muertos.
 
 * Respecto al cargado dinámico de los ataques, preferimos por cargar los ataques solo cuando el usuario desee utilizarlos, los handlers respectivos los almacenamos en un stack de handlers `global_handlers`, con el fin de una vez finalizado el programa, realizar un `dlclose` a todos los handlers del stack.
 
 
 # Ejemplo
+
+A continuación se muestra un breve ejemplo de como podria resultar un elepeduelo, notese los comandos `*ATAQUES` y `*LISTA*` :
+
 ```
 Bienvenidos a un nuevo elepeduelo
 Ingrese el nombre del primer entrenador: 
