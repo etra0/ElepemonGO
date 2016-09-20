@@ -43,9 +43,10 @@ static int handler(void* elepemon, const char* section, const char* name,
         parse_type(value, &(actual->elepemon.type));
     } else if (MATCH(section, "power")) {
         /* Se envia a NULL porque suponemos que siempre habra un valor valido */
-        actual->elepemon.power = strtol(value, NULL, 10);
+        actual->elepemon.power = (int)strtol(value, NULL, 10);
     } else if (MATCH(section, "attacks")) {
         actual->elepemon.attack.attack_ids = get_attack_ids(value, &(actual->elepemon.attack.attack_count));
+		actual->elepemon.attack.attacks = NULL;
     } else {
         return 0;  /* unknown section/name, error */
     }
@@ -59,8 +60,8 @@ int main(int argc, char* argv[])
         return -1;
     }
 
-    char *elepemones_filename = argv[2];
-    char *attack_folder = argv[1];
+    const char *elepemones_filename = argv[2];
+    const char *attack_folder = argv[1];
 
     struct elepemon_node *main_stack = NULL;
 
@@ -91,6 +92,7 @@ int main(int argc, char* argv[])
     }
 
     quantity = get_stack_size(main_stack);
+	
 
     printf("Bienvenidos a un nuevo elepeduelo\n");
     printf("Ingrese el nombre del primer entrenador: ");
@@ -102,7 +104,7 @@ int main(int argc, char* argv[])
     player_names[1] = strdup(buffer);
 
     do {
-    printf("Ingrese la cantidad de elepemones:\n");
+    printf("Ingrese la cantidad de elepemones:");
     input; scanf("%d", &elepemones_per_player);
     if (elepemones_per_player > quantity/2)
         printf("Solo tenemos %d elepemones, intente nuevamente, ", quantity);
@@ -134,6 +136,7 @@ int main(int argc, char* argv[])
     printf("Elepemones %s:\n", player_names[1]);
     print_stack(stack[1]);
     printf("\n---------\n");
+	
 
     printf("IT'S TIME TO DU-DU-DU-DU-DUEL!!!11!!uno!\n");
 
@@ -172,7 +175,9 @@ int main(int argc, char* argv[])
             }
         } while (choices == -1);
 
-        load_attacks(attack_folder, elepemon_selected[0]);
+		printf("IS NULL %d\n", elepemon_selected[0]->attack.attacks == NULL);
+		if (elepemon_selected[0]->attack.attacks == NULL)
+			load_attacks(attack_folder, elepemon_selected[0]);
 
         do {
             printf("%s, a que elepemon ataca?", elepemon_selected[0]->name);
@@ -194,7 +199,7 @@ int main(int argc, char* argv[])
 
         } while (elepemon_selected[1] == NULL);
 
-        check_attack(elepemon_selected[0]->attack.attacks[choices](elepemon_selected[0], elepemon_selected[1]));
+        check_attack((elepemon_selected[0]->attack.attacks[choices])(elepemon_selected[0], elepemon_selected[1]));
 
         if (elepemon_selected[1]->hp <= 0) {
             printf("El elepemon %s ha muerto! :(\n", elepemon_selected[1]->name);

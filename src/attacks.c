@@ -46,21 +46,29 @@ int load_attacks(const char* attacks_filedir, struct elepemon* elepemon)
 	int i = 0;
 
 	void *handle;
-	char *filename = "";
+	char filename[100];
+	printf("Directorio: %s", attacks_filedir);
+	
+	print_elepemon(elepemon);
 
 	elepemon->attack.attacks = malloc(sizeof(attack_t) * (elepemon->attack.attack_count));
 
 	for (i = 0; i < elepemon->attack.attack_count; i++) {
-		filename = strdup(attacks_filedir);
-		filename = strcat(filename, "/lib");
-		filename = strcat(filename, elepemon->attack.attack_ids[i]);
-		filename = strcat(filename, ".so");
+		strcat(filename, attacks_filedir);
+		strcat(filename, "/lib");
+		strcat(filename, elepemon->attack.attack_ids[i]);
+		strcat(filename, ".so");
+		
+		printf("FILENAME: %s\n", filename);
+		printf("FILEDIR: %s\n", attacks_filedir);
 
 		handle = dlopen(filename, RTLD_NOW);
-
+		dlerror();
+//
 		push_handler(&global_handlers, handle);
 
-		elepemon->attack.attacks[i] = dlsym(handle, ATTACK_FN);
+		*(elepemon->attack.attacks+i) = dlsym(handle, ATTACK_FN);
+		memset(filename, '\0', 100);
 	}
 
 	return 1;
@@ -84,7 +92,6 @@ void unload_attacks()
 
 void check_attack(struct attack_result* attack_info)
 {
-	int is_dead = 0;
     printf("%s ha usado %s contra %s\n",attack_info->attacker->name, attack_info->attack_id, attack_info->defensor->name);
     printf("Ha causado un daño de %d puntos de vida\n", attack_info->damage_done);
 

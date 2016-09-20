@@ -8,25 +8,22 @@ typedef struct handler_stack_node{
 void push_handler(handler_stack **stack, void* handler)
 {
 	handler_stack *aux;
-	aux = *stack;
-
-	*stack = malloc(sizeof(handler_stack));
-
-	(*stack)->handler = handler;
-	(*stack)->next = aux;
+	aux = malloc(sizeof(handler_stack));
+	aux->handler = handler;
+	aux->next = *stack;
+	*stack = aux;
 }
 
-void* pop_handler(handler_stack **stack)
+void pop_handler(handler_stack **stack)
 {
 	void *handler;
 	handler_stack *aux;
 
-	handler = (*stack)->handler;
 	aux = *stack;
+	handler = aux->handler;
+	
 	*stack = (*stack)->next;
 
 	dlclose(handler);
 	free(aux);
-
-	return handler;
 }
