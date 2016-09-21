@@ -206,7 +206,7 @@ int main(int argc, char* argv[])
 
         if (get_stack_size(stack[!i]) == 0) {
             printf("El jugador %s se ha quedado sin elepemones.\n\n", player_names[!i]);
-            printf("Felicidades %s, has ganado!", player_names[i]);
+            printf("Felicidades %s, has ganado!\n", player_names[i]);
             end = 1;
         }
 
