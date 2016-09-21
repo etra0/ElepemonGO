@@ -1,4 +1,4 @@
-#include "../lib/handler_stack.h"
+#include <handler_stack.h>
 
 typedef struct handler_stack_node{
 	void *handler;

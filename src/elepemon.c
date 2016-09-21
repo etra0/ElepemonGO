@@ -1,4 +1,4 @@
-#include "../lib/elepemon.h"
+#include <elepemon.h>
 #include <ctype.h>
 
 

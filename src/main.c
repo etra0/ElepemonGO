@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../lib/elepemon.h"
+#include <elepemon.h>
 #include "../inih/ini.h"
 /* verificar archivo */
 #include <sys/types.h>

@@ -1,5 +1,5 @@
-#include "../lib/elepemon.h"
-#include "../lib/handler_stack.h"
+#include <elepemon.h>
+#include <handler_stack.h>
 
 handler_stack *global_handlers = NULL;
 

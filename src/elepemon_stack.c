@@ -1,4 +1,4 @@
-#include "../lib/elepemon.h"
+#include <elepemon.h>
 
 int is_empty(struct elepemon_node* stack)
 {
