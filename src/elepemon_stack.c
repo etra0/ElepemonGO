@@ -40,7 +40,9 @@ void print_stack(struct elepemon_node* stack)
         return;
     }
     while (!(is_empty(ptr))) {
-        printf("%d. %s\n", i++, ptr->elepemon.name);
+        printf("%d.-\n", i++);
+        print_elepemon(&ptr->elepemon);
+        printf("\n");
         ptr = ptr->next;
     }
 }

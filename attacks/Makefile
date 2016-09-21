@@ -1,4 +1,4 @@
-CFLAGS=-Wall -I..
+CFLAGS=-Wall -I../includes
 CC=gcc
 
 attacks: purge *.c
