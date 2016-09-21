@@ -29,10 +29,12 @@ static int handler(void* elepemon, const char* section, const char* name,
      * ya que si no, se creaba un elepemon por cada atributo
      */
 
-    if (is_empty(*temporal) || (strcmp(section, (*temporal)->elepemon.name)))
-        actual = push_elepemon(temporal, section);
-    else
-        actual = *temporal;
+    if (is_empty(*temporal) || (strcmp(section, (*temporal)->elepemon.name))) {
+        *temporal = push_elepemon(temporal, section);
+    }
+
+    actual = *temporal;
+
 
     if (MATCH(section, "hp")) {
         actual->elepemon.hp = atoi(value);
@@ -45,7 +47,6 @@ static int handler(void* elepemon, const char* section, const char* name,
         actual->elepemon.power = (int)strtol(value, NULL, 10);
     } else if (MATCH(section, "attacks")) {
         actual->elepemon.attack.attack_ids = get_attack_ids(value, &(actual->elepemon.attack.attack_count));
-		actual->elepemon.attack.attacks = NULL;
     } else {
         return 0;  /* unknown section/name, error */
     }

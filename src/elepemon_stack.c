@@ -50,13 +50,11 @@ void print_stack(struct elepemon_node* stack)
 struct elepemon_node* push_elepemon(struct elepemon_node** stack, const char* name)
 {
     struct elepemon_node* aux;
-    aux = *stack;
-
-    *stack = malloc(sizeof(struct elepemon_node));
-    init_elepemon(&((*stack)->elepemon));
-    (*stack)->elepemon.name = strdup(name);
-    (*stack)->next = aux;
-
+    aux = malloc(sizeof(struct elepemon_node));
+    init_elepemon(&(aux->elepemon));
+    aux->elepemon.name = strdup(name);
+    aux->next = *stack;
+    *stack = aux;
     return *stack;
 }
 
