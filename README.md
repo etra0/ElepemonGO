@@ -33,6 +33,8 @@ debido a que el ejecutable se guarda en la carpeta bin
 * Se exige que el primer parametro sea el directorio donde estarán los ataques y el segundo el nombre del ini.
 * Se exige que al escoger los elepemones se utilicen números, no asi a la hora de atacar, en este caso se realiza con sus respectivos nombres.
 * Se asume que cada ataque realiza efectivamente los cambios de estado de cada elepemon, nuestro main solo llama las funciones de ataque,imprime los resultados y luego chequea si es que algun elepemon ha muerto.
+* Se asume que no habran elepemones con nombre `*LISTA*`, ni ataques con nombre
+  `*ATAQUES*`, ya que estos son nombres reservados para comandos del juego.
 
 # Breve descripción de la estrategia
 
