@@ -25,7 +25,6 @@ void print_elepemon(const struct elepemon* elepemon)
     printf("HP: \t %d\n", elepemon->hp);
     printf("Defense: %d\n", elepemon->defense);
     printf("Type: \t %s\n", type);
-    printf("Pointer: %p\n", elepemon->attack.attacks);
     for (i = 0; i < elepemon->attack.attack_count; i++)
         printf("Attack %d: %s\n", i+1, elepemon->attack.attack_ids[i]);
 

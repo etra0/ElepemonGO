@@ -35,7 +35,6 @@ static int handler(void* elepemon, const char* section, const char* name,
 
     actual = *temporal;
 
-
     if (MATCH(section, "hp")) {
         actual->elepemon.hp = atoi(value);
     } else if (MATCH(section, "defense")) {
