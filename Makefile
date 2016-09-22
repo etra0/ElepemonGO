@@ -10,10 +10,10 @@ SRCCODE=src
 default: $(OUT)
 
 compile: external $(SRCCODE)/main.c
-	$(CC) $(CFLAGS) -Iincludes -L./ $(SRCCODE)/main.c objects/*.o -linih -ldl -o bin/$(EXEC)
+	$(CC) $(CFLAGS) -Iincludes -L./ $(SRCCODE)/main.c objects/*.o -linih -ldl -o bin/$(EXEC) -g
 
 external:
-	for a in `ls $(SRCCODE)/*.c|grep -v main| sed 's/src\///g'`; do $(CC) $(CFLAGS) -Iincludes -c $(SRCCODE)/$$a  -o objects/$${a%*.c}.o; done
+	for a in `ls $(SRCCODE)/*.c|grep -v main| sed 's/src\///g'`; do $(CC) $(CFLAGS) -g -Iincludes -c $(SRCCODE)/$$a  -o objects/$${a%*.c}.o; done
 
 run:
 	bin/$(EXEC) attacks ELEPEMONES

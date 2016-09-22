@@ -10,9 +10,10 @@ char** get_attack_ids(const char* str, int* n)
 
 	char **array;
 
-	char *token, *strcopy;
+	char *token, *strcopy, *tofree;
 
 	strcopy = strdup(str);
+	tofree = strcopy;
 
 	for (i = 0; i < strlen(str); i++)
 		if (str[i] == ',')
@@ -28,7 +29,9 @@ char** get_attack_ids(const char* str, int* n)
 		i++;
 	}
 
-	free(strcopy); free(token);
+	free(strcopy); 
+	free(tofree);
+	free(token);
 
 	return array;
 }

@@ -36,9 +36,9 @@ static int handler(void* elepemon, const char* section, const char* name,
     actual = *temporal;
 
     if (MATCH(section, "hp")) {
-        actual->elepemon.hp = atoi(value);
+        actual->elepemon.hp = (int)strtol(value, NULL, 10);
     } else if (MATCH(section, "defense")) {
-        actual->elepemon.defense = atoi(value);
+        actual->elepemon.defense = (int)strtol(value, NULL, 10);
     } else if (MATCH(section,"type")) {
         parse_type(value, &(actual->elepemon.type));
     } else if (MATCH(section, "power")) {
@@ -222,6 +222,9 @@ int main(int argc, char* argv[])
     //
     free_elepemon_stack(deadpool);
     main_stack = NULL; stack[0] = NULL; stack[1] = NULL;
+
+    free(player_names[0]);
+    free(player_names[1]);
 
     return 0;
 
