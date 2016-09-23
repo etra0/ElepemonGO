@@ -20,8 +20,14 @@ con esto se compila el inih para cargar el archivo, se crean las carpetas `bin` 
 ```bash
 make compile
 ```
+para compilar y obtener el ejecutable. No olvidar compilar todos los attacks:
+```bash
+cd attacks/
+make
+cd ..
+```
 
-para compilar y obtener el ejecutable. Para probar usar
+Finalmente, para probar usar
 ```bash
 make run
 ```
