@@ -144,3 +144,5 @@ El jugador Sebastian se ha quedado sin elepemones.
 Felicidades Gaspar, has ganado!
 
 ```
+
+Eso ha sido todo por hoy.
